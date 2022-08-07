@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <link href="css/style.css" rel="stylesheet" type="text/css" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="icon" type="image/png" href="assets/favicon.png">
+
+        <!-- chargement icônes Font Awesome, utilisation d'un cdn -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+
+        <title>Fisheye - photographe </title>
+    </head>
+    <body id="body" aria-hidden="false">
+        <header>
+            <a href="index.html"><img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/></a>
+        </header>
+        <main id="main">
+
+            <section id="photograph-header">
+                
+            </section>              
+
+            <section id="portfolio-container">
+                <div id="orderby-container">
+
+                    <label for="navbar-container" id="navbar-label">Trier par :</label>
+                    <div id="navbar-container" aria-labelledby="navbar-label">
+                        <ul id="navbar">
+                            <li id="popularite">
+                                <span>Popularité</span>
+                                <ul id="ssnavbar">
+                                    <li id="date"><span>Date</span></li>
+                                    <li id="titre"><span>Titre</span></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="portfolio">
+                </div>
+                
+            </section>
+
+            </div>
+            <div id="modal-container" aria-hidden="true" role="dialog" aria-describedby="modal-title">
+                <div id="modal">
+                    <header id="modal-header">
+                        <h1 id="modal-title">Contactez-moi</h1>
+                        <button id="modal-close-button">
+                            <img src="assets/icons/close.svg" onclick="closeModal()" />
+                        </button>
+                    </header>
+                    <div class="modal-body">
+
+                        <form id="formContact">
+                            <div class="formData">
+                                <label for="first" id="labelFirst">Prénom</label>
+                                <input class="text-control" type="text" id="first" name="first" minlength="2" placeholder="Veuillez saisir votre prénom" aria-labelledby="labelFirst" />
+                                <p class="textError" aria-hidden="true"></p>
+                            </div>
+                            <div class="formData">
+                                <label for="last" id="labelLast">Nom</label>
+                                <input class="text-control" type="text" id="last" name="last" minlength="2" placeholder="Veuillez saisir votre nom" aria-labelledby="labelLast"/>
+                                <p class="textError" aria-hidden="true"></p>
+                            </div>
+                            <div class="formData">
+                                <label for="email" id="labelEmail">E-mail</label>
+                                <input class="text-control" type="email" id="email" name="email" placeholder="Veuillez saisir votre adresse mail" aria-labelledby="labelEmail"/>
+                                <p class="textError" aria-hidden="true"></p>
+                            </div>
+                            <div class="formData">
+                                <label for="message" id="labelMessage">Votre message</label>
+                                <textarea class="text-control" type="text" id="message" name="message" rows="5" placeholder="Veuillez saisir votre message" aria-labelledby="labelMessage"></textarea>
+                                <p class="textError" aria-hidden="true"></p>
+                            </div>
+                            <button id="modal-button">Envoyer</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <section id="carrousel">
+
+            </section>
+        </main>
+
+        
+        <script src="scripts/main.js"></script>
+
+        <!-- templates -->
+        <script src="scripts/factories/photographerfactory.js"></script>
+        <script src="scripts/factories/mediafactory.js"></script>
+
+        
+        <!-- carrousel -->
+        <script src="scripts/modal/carrousel.js"></script>
+        <!-- point d'entrée -->
+        <script src="scripts/pages/photographer.js"></script>
+        <!-- tri -->
+        <script src="scripts/utils/orderby.js"></script>
+        <!-- modal -->
+        <script src="scripts/modal/contactForm.js"></script>
+    </body>
+</html>
