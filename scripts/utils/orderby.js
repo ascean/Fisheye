@@ -1,7 +1,9 @@
-const popularite = document.getElementById("popularite")
-const populariteSpan = popularite.getElementsByTagName("span")
-const li = document.getElementsByTagName("li")
-const ssnavbar = document.getElementById("ssnavbar")
+/***********************************GESTION DU TRI DU PORTFOLIO****************************************************** */
+
+const liPopularite  = document.getElementById("popularite")
+const navbarSpan    = liPopularite.getElementsByTagName("span")
+const liNavbar      = document.getElementsByTagName("li")
+const ssnavbar      = document.getElementById("ssnavbar")
 
 /**
  * Tri du tableau des médias en fonction du critère choisi
@@ -39,8 +41,8 @@ function selectOrderBy(ev) {
     let choice = ev.target.parentNode.id;
 
     //Toutes les options de tri ont un background de la couleur d'origine
-    for (let i = 0; i < li.length; i++) {
-        const element = li[i];
+    for (let i = 0; i < liNavbar.length; i++) {
+        const element = liNavbar[i];
         element.style.backgroundColor = "#901C1C"
     }
     
@@ -50,11 +52,11 @@ function selectOrderBy(ev) {
     }
     
     //Choix différent du choix précédemment affiché
-    if (choice != populariteSpan[0].innerHTML) {
+    if (choice != navbarSpan[0].innerHTML) {
         
         //màj du sélecteur : repli + texte de la 1ère option de menu (visible)= option de tri choisie
         ssnavbar.style.display="none"
-        populariteSpan[0].innerHTML = choice.charAt(0).toUpperCase() + choice.substring(1).toLowerCase();
+        navbarSpan[0].innerHTML = choice.charAt(0).toUpperCase() + choice.substring(1).toLowerCase();
         
         //tri du tableau de données
         orderbyArray(choice)
@@ -68,7 +70,7 @@ function selectOrderBy(ev) {
 function openNavbarOrderby() {
 
     //la 1ère option du menu ouvert est celle d'origine
-    populariteSpan[0].innerHTML = "Popularité";
+    navbarSpan[0].innerHTML = "Popularité";
     ssnavbar.style.display="block"
 }
 
@@ -80,11 +82,11 @@ function closeNavbarorderby() {
 
 //*************************************GESTION DES LISTENERS*************************************
 //écoute du clic sur les 3 options
-for (let i = 0; i < li.length; i++) {
-    const element = li[i];
+for (let i = 0; i < liNavbar.length; i++) {
+    const element = liNavbar[i];
     element.addEventListener("click", selectOrderBy) 
 }
 //ouverture du menuau survol
-popularite.addEventListener("mouseover", openNavbarOrderby)
+liPopularite.addEventListener("mouseover", openNavbarOrderby)
 //fermeture quand survol terminé
-popularite.addEventListener("mouseleave", closeNavbarorderby)
+liPopularite.addEventListener("mouseleave", closeNavbarorderby)

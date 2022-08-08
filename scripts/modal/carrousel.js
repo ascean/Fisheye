@@ -1,11 +1,15 @@
+/**********************************GESTION DU CARROUSEL******************************************** */
+
 let nbImages = 0 //nombre d'images contenues dans le portfolio
 let currentImg = 0  //numéro de l'image actuelle affichée dans le carrousel
 
 const carrousel = document.getElementById("carrousel");
+//const leftButton = document.querySelectorAll(".controls-left")
+//const rightButton = document.querySelectorAll(".controls-right")
 
 /**
  * Affichage du carrousel en fonction de l'image sélectionnée dans le portfolio
- * @param {string} idMedia 
+ * @param {string} idMedia : identifiant du média cliqué dans le portfolio
  */
 function displayCarrousel(idMedia) {
 
@@ -20,16 +24,16 @@ function displayCarrousel(idMedia) {
     carrouselContainer.setAttribute("aria-label",`Images et vidéos de ${name}`)
     //ajout des éléments au DOM
     carrousel.appendChild(carrouselContainer)
-  
+    
     //on traite les médias du photographe concerné
     mediasPhotographer[1].forEach((media) => {
-
+        
         //récup des infos concernant les médias
         const mediaModel = mediaFactory(media);
 
         //construction du contenu à ajouter au DOM
         const carrouselDOM = mediaModel.getMediaCardDOM("carrousel")
-
+        
         //Ajout au DOM
         carrouselContainer.appendChild(carrouselDOM)
     });
@@ -42,14 +46,14 @@ function displayCarrousel(idMedia) {
     const portfolio = document.getElementById("portfolio");
     const portfolioItems = portfolio.getElementsByTagName('article')
     for (let i = 0; i < portfolioItems.length; i++) {
-
+        
         //média sélectionné depuis le portofolio : affiché dans le carrousel + gestion TA
         if (portfolioItems[i].id == idMedia) {
             carrouselItems[i].classList.remove("display-none")
             carrouselItems[i].setAttribute("aria-hidden", "true")
             currentImg = i
-
-        //tous les autres médias : masqués dans le carrousel + gestion TA
+            
+            //tous les autres médias : masqués dans le carrousel + gestion TA
         }else{
             carrouselItems[i].classList.add("display-none")
             carrouselItems[i].setAttribute("aria-hidden", "false")
@@ -67,7 +71,9 @@ function displayCarrousel(idMedia) {
     BODY.classList.add('no-scroll')
 
     //prise de focus par le bouton de fermeture
-    const carrouselButton = document.querySelector('.carrousel-close-button')
+    let currentCarrousel = carrouselItems[currentImg]
+    const carrouselButton = currentCarrousel.querySelector('.carrousel-close-button')
+    carrouselButton.addEventListener("click",closeCarrousel)
     carrouselButton.focus()
     
 }
@@ -131,6 +137,7 @@ function changeCarrousel (direction)  {
     //maj du numéro de l'image courante
     currentImg = nextImg
 }
+
 
 //Gestion des interactions au clavier
 document.addEventListener('keydown', e => {

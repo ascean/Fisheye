@@ -1,9 +1,9 @@
+/**********************************GESTION DE LA MODALE DE CONTACT ******************************************** */
 window.onload = () => {
     setupListeners()
 }
 
 const modalContainer = document.getElementById('modal-container')
-const modal = document.getElementById('modal')
 const modalTitle = document.getElementById('modal-title')
 const modalButton = document.getElementById("modal-button")
 
@@ -200,8 +200,6 @@ function displayModal(name) {
     //affichage de la modale
     modalContainer.style.display = "flex";
     modalContainer.setAttribute('aria-hidden', 'false')
-    //modal.style.display = "flex";
-    //modal.setAttribute('aria-hidden', 'false')
 
     //on masque le reste de la mage pour les TA
     MAIN.setAttribute('aria-hidden', 'true')

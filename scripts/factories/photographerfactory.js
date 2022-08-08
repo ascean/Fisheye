@@ -1,7 +1,9 @@
+/****************************************GESTION DU DOM PHOTOGRAPHE******************************************************** */
 /**
- * Traitement des données photographes
- * @param {object} data 
- * @returns 
+ * Création du DOM concernant le ou les photographe(s) pour alimenter les pages index.htmp ou photographers.html
+ * fonction appelée dans photographer.js et index.js
+ * @param {object} data : ensemble des données phtographe contenues dans le tableau photographersArray[0]
+ * @returns contenu du DOM à implémenter
  */
 function photographerFactory(data) {
 
@@ -15,7 +17,6 @@ function photographerFactory(data) {
     const tagline   = data.tagline
     const price     = data.price
     const portrait  = data.portrait
-
     const picture   = `./assets/photographers/${portrait}`
 
     /**

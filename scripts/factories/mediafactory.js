@@ -1,20 +1,21 @@
+/**********************************GESTION DU DOM MEDIAS******************************************** */
 var mediaLikes = 0;
 var imageNumber = 0
-
+/**
+ * Création du DOM concernant les médias pour alimenter le portfolio et le carrousel
+ * fonction appelée dans photographer.js et carrousel.js
+ * @param {object} data : ensemble des données médias contenues dans le tableau photographersArray[1]
+ * @returns contenu du DOM à implémenter
+ */
 function mediaFactory(data) {
     
-    //const { name, id, city, country, tagline, price, portrait } = data 
-    //équivaut à:
-    
-    const id        =   data.id
-    const photographerId      =   data.photographerId
-    const title     =   data.title
-    const image     =   data.image
-    const video     =   data.video 
-    const likes     =   data.likes
-    const date      =   data.date
-    const price     =   data.price
-    const noClicable  =   data.clicable
+    const id                =   data.id
+    const photographerId    =   data.photographerId
+    const title             =   data.title
+    const image             =   data.image
+    const video             =   data.video 
+    const likes             =   data.likes
+    const noClicable        =   data.clicable
     
     /**
      * construction de l'élément du DOM
@@ -25,24 +26,33 @@ function mediaFactory(data) {
 
         let article; let picture;
         
-        //media = image
-        if (image) {
-            picture = `<img src = ./assets/images/${photographerId}/${image} alt=${image}`
-        //media = video
-        }else{
-            picture = `<video src = ./assets/images/${photographerId}/${video} alt=${video}` 
-        }
-
-
+        
+        
         //DOM pourle portfolio + maj du nombre de likes
         if (type == "portfolio") {
+            //media = image
+            if (image) {
+                picture = `
+                    <a href="#">
+                    <img src = ./assets/images/${photographerId}/${image} alt=${image} onclick="displayCarrousel(${id})">
+                    </a>
+                    `
+            //media = video
+            }else{
+                picture = `
+                    <i class="fa-solid fa-circle-play"></i>
+                    <a href="#" onclick="displayCarrousel(${id})" >
+                        <video>
+                            <source src = ./assets/images/${photographerId}/${video} type="video/mp4" alt=${video} >
+                        </video>
+                    </a>
+                    ` 
+            }
 
             article = document.createElement( 'article' );
             article.setAttribute("id",`${id}`)
             article.innerHTML = 
-                `<a href="#">
-                    ${picture} onclick="displayCarrousel(${id})">
-                </a>
+                `${picture} 
                 <div class="photo-infos">
                     <p class="photo-title">${title}</p>
                     <div id=like${id} class="likes" aria-label="likes" onClick="addLike(${id})">
@@ -67,11 +77,29 @@ function mediaFactory(data) {
                 article.setAttribute("aria-hidden", "true")
             }
 
+            //media = image
+            if (image) {
+                picture = `
+                    <a href="#">
+                        <img src = ./assets/images/${photographerId}/${image} alt=${image} class="carrousel-img">
+                    </a>
+                    `
+            //media = video
+            }else{
+                
+                picture = 
+                    `<a href="#">
+                        <video controls>
+                            <source src = ./assets/images/${photographerId}/${video} type="video/mp4" alt=${video} 
+                                class="carrousel-img">
+                        </video>
+                    </a>` 
+            }
+
             article.innerHTML = 
-                `<button class="carrousel-close-button">
+                `<button class="carrousel-close-button" aria-label="Fermer la fenêtre">
                     <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z" fill="white"
-                    onclick="closeCarrousel()"/>
+                    <path d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z" fill="white"/>
                     </svg>
                 </button>
                 <div role="button" class="controls controls-left">
@@ -82,7 +110,7 @@ function mediaFactory(data) {
                 </div>
                 
                 <article>
-                    <a href="#">${picture} class="carrousel-img"></a>
+                    ${picture}
                     <h2 class="photo-title">${title}</h2>
                 </article>
 
