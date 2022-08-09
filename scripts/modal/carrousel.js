@@ -1,7 +1,4 @@
 /**********************************GESTION DU CARROUSEL******************************************** */
-const BODY = document.getElementById('body')
-const MAIN = document.getElementById('main')
-
 let nbImages = 0 //nombre d'images contenues dans le portfolio
 let currentImg = 0  //numéro de l'image actuelle affichée dans le carrousel
 
@@ -11,9 +8,11 @@ const carrousel = document.getElementById("carrousel");
  * Affichage du carrousel en fonction de l'image sélectionnée dans le portfolio
  * @param {string} idMedia : identifiant du média cliqué dans le portfolio
  */
-function displayCarrousel(idMedia) {
+//eslint-disable-next-line no-unused-vars
+var displayCarrousel = (idMedia) => {
 
     //tableau contenant les données du photographe ([0]) et de ses médias ([1])
+    // eslint-disable-next-line no-undef
     let mediasPhotographer = photographersArray[idPhotographer]
 
     //création de l'élément carrousel-container
@@ -29,6 +28,7 @@ function displayCarrousel(idMedia) {
     mediasPhotographer[1].forEach((media) => {
         
         //récup des infos concernant les médias
+        // eslint-disable-next-line no-undef
         const mediaModel = mediaFactory(media);
 
         //construction du contenu à ajouter au DOM
@@ -67,7 +67,9 @@ function displayCarrousel(idMedia) {
     carrouselContainer.setAttribute('aria-hidden', 'false')
 
     //on masque le reste de la page pour les TA et on empêche le scroll
+    // eslint-disable-next-line no-undef
     MAIN.setAttribute('aria-hidden', 'true')
+    // eslint-disable-next-line no-undef
     BODY.classList.add('no-scroll')
 
     //prise de focus par le bouton de fermeture
@@ -81,13 +83,15 @@ function displayCarrousel(idMedia) {
 /**
  * Fermeture du carrousel
  */
-function closeCarrousel() {
+var closeCarrousel = () => {
     
     //suppression du contenu du carrousel dans le DOM
     carrousel.innerHTML = ""
       
     //réaffichage de MAIN pour les TA + scroll
+    // eslint-disable-next-line no-undef
     MAIN.setAttribute('aria-hidden', 'false')
+    // eslint-disable-next-line no-undef
     BODY.classList.remove('no-scroll')
     
     //récup du focus par le bouton Contactez-moi
@@ -98,7 +102,7 @@ function closeCarrousel() {
  * gestion du changement d'image affichée dans le carrousel
  * @param {string} direction = "next" ou "prev"
  */
-function changeCarrousel (direction)  {
+var changeCarrousel = (direction) =>  {
     
     const carrouselItems = document.querySelectorAll(".carrousel-item")
     

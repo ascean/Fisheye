@@ -7,7 +7,8 @@ var imageNumber = 0
  * @param {object} data : ensemble des données médias contenues dans le tableau photographersArray[1]
  * @returns contenu du DOM à implémenter
  */
-function mediaFactory(data) {
+//eslint-disable-next-line no-unused-vars
+var mediaFactory = (data) => {
     
     const id                =   data.id
     const photographerId    =   data.photographerId
@@ -25,8 +26,6 @@ function mediaFactory(data) {
     var getMediaCardDOM = function(type) {
 
         let article; let picture;
-        
-        
         
         //DOM pourle portfolio + maj du nombre de likes
         if (type == "portfolio") {

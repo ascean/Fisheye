@@ -8,20 +8,23 @@ let tabOrder = {}
  * Tri du tableau des médias en fonction du critère choisi
  * @param {string} type 1 = "popularité", 2 = "date" ou 3 = "titre"
  */
-function orderbyArray(type) {
+var orderbyArray = (type) => {
     
     switch (type) {
         case "1"://"popularite":
+            // eslint-disable-next-line no-undef
             photographersArray[idPhotographer][1].sort((a,b) => {
             return a.likes - b.likes
         })
         break;
         case "2": //"date":
+            // eslint-disable-next-line no-undef
             photographersArray[idPhotographer][1].sort((a,b) => {
             return a.date.localeCompare(b.date)
         })
         break;
         case "3": //"titre":
+            // eslint-disable-next-line no-undef
             photographersArray[idPhotographer][1].sort((a,b) => {
                 return a.title.localeCompare(b.title)
             })
@@ -35,7 +38,7 @@ function orderbyArray(type) {
  * prise en compte du critère de tri dans l'affichage des médias : tri du tableau photographersArray
  * @param {object} ev 
  */
-function selectOrderBy(ev) {
+var selectOrderBy = (ev) => {
 
     //récup de l'identifiant et màj de l'ordre du menu de tri
     let choice = ev.target.parentNode.id;
@@ -79,25 +82,25 @@ function selectOrderBy(ev) {
     orderbyArray(num)
         
     //affichage des médias en fonction du critère de tri
+    // eslint-disable-next-line no-undef
     displayPortfolio(photographersArray[idPhotographer][1])
 }
 
 //ouverture du menu de tri
-function openNavbarOrderby() {    
+var openNavbarOrderby = () => {    
     ssnavbar.style.display="block"
 }
 
 //fermeture du menu de tri
-function closeNavbarorderby() {
+var closeNavbarorderby = () => {
     ssnavbar.style.display="none"
 }
 
 //*************************************GESTION DES LISTENERS*************************************
-function setupListenersFunctions () {
+var setupListenersFunctions = () => {
     
     let navbar  = document.getElementById("navbar")
     allLi       = navbar.getElementsByTagName("li")
-    navbarSpan  = allLi[0].getElementsByTagName("span")
 
     for (let i = 0; i < allLi.length; i++) {
         const element = allLi[i];

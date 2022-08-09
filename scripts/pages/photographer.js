@@ -48,6 +48,7 @@ var displayPhotographer = async (photographer) => {
 
     //récup des infos concernant le photographe passé en paramètre
     //exemple de retour {name: 'Mimi Keel', picture: 'assets/photographers/MimiKeel.jpg', getUserCardDOM: ƒ}
+    // eslint-disable-next-line no-undef
     const photographerModel = photographerFactory(photographer);
 
     //construction du contenu à ajouter au DOM
@@ -86,6 +87,7 @@ var displayPortfolio = async (medias) => {
         price = media.price
 
         //récup des infos concernant les médias
+        // eslint-disable-next-line no-undef
         const mediaModel = mediaFactory(media);
 
         //construction du contenu à ajouter au DOM
@@ -144,6 +146,7 @@ var init = async () => {
 
     //appelé dans orderby.js 
     //tri du tableau photographersArray selon l'ordre par défaut = popularité
+    // eslint-disable-next-line no-undef
     orderbyArray("1")
 
     //affichage des données médias du photographe concerné dans le portfolio
@@ -155,9 +158,10 @@ var init = async () => {
 /**
  * gestion du clic sur le nombre de likes
  * +1 au clic puis blocage par suppression de l'identifiant + modif champ clicable (utile quand on recharge les médias suite au tri)
- *      
+ * appelée depuis clic sur le coeur sous chaque média (implémentation dans le DOM)
  * @param {string} idMedia 
  */
+//eslint-disable-next-line no-unused-vars
 var addLike = (idMedia) => {
 
     //vérification de l'existence de l'identifiant sur le média

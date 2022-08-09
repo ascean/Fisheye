@@ -34,7 +34,7 @@ class FormData {
 /**
 * initialisation des éléments de formulaire
 */
-function initFields() {
+var initFields = () => {
     for (let i = 0; i < 4; i++) {
         formContact[i].value = "";
     }
@@ -43,7 +43,7 @@ function initFields() {
 /**
  * initialisation des messages d'erreur
  */
-function initErrors() {
+var initErrors = () => {
 
     for (let i = 0; i < textError.length; i++) {
         switch (i) {
@@ -69,7 +69,7 @@ function initErrors() {
 /**
  * initialisation du tableau contenant les éléments du formulaire
  */
-function initCheckList() {
+var initCheckList = () => {
 
     checkList = [
         new FormData("first", ""), 		//élément 0
@@ -85,7 +85,7 @@ function initCheckList() {
  * gestion de l'affichage des messages d'erreur en fonction du contenu du tableau checkList
  * @returns true si erreur, false sinon
  */
-function displayErrorField() {
+var displayErrorField = () => {
 
     let fieldError = false;
 
@@ -197,7 +197,8 @@ var listenerFunction = {
  * Affichage de la modale
  * @param {string} name 
  */
-function displayModal(name) {
+//eslint-disable-next-line no-unused-vars
+var displayModal = (name) => {
 
     initErrors()
     //affichage de la modale
@@ -219,7 +220,7 @@ function displayModal(name) {
 /**
  * Fermeture de la modale
  */
-function closeModal() {
+var closeModal = () => {
 
     initFields()
     initErrors()
@@ -241,7 +242,7 @@ function closeModal() {
  * Validation du formulaire
  * @param {object} event 
  */
-function validModal(event) {
+var validModal = (event) => {
 
     //on empêche le comportement par défaut du formulaire
     event.preventDefault()

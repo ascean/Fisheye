@@ -5,7 +5,8 @@
  * @param {object} data : ensemble des données phtographe contenues dans le tableau photographersArray[0]
  * @returns contenu du DOM à implémenter
  */
-function photographerFactory(data) {
+//eslint-disable-next-line no-unused-vars
+var photographerFactory = (data) => {
 
     //const { name, id, city, country, tagline, price, portrait } = data 
     //équivaut à:

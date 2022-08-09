@@ -22,6 +22,7 @@
         photographers.forEach((photographer) => {
             
             //récup des infos concernant un photographe
+            // eslint-disable-next-line no-undef
             const photographerModel = photographerFactory(photographer);
             //exemple de retour {name: 'Mimi Keel', picture: 'assets/photographers/MimiKeel.jpg', getUserCardDOM: ƒ}
 
