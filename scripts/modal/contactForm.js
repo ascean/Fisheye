@@ -199,7 +199,7 @@ function displayModal(name) {
     initErrors()
     //affichage de la modale
     modalContainer.style.display = "flex";
-    modalContainer.setAttribute('aria-hidden', 'false')
+    modalContainer.setAttribute('aria-hidden', 'true')
 
     //on masque le reste de la mage pour les TA
     MAIN.setAttribute('aria-hidden', 'true')
@@ -224,14 +224,14 @@ function closeModal() {
 
     //on masque la modale
     modalContainer.style.display = "none";
-    modalContainer.setAttribute('aria-hidden', 'true')
+    modalContainer.setAttribute('aria-hidden', 'false')
 
     //réaffichage de main pour les TA
     MAIN.setAttribute('aria-hidden', 'false')
     BODY.classList.remove('no-scroll')
 
     //récup du focus par le bouton Contactez-moi
-    document.getElementById('contact-button').focus()
+    document.getElementById('contact-button').focus() 
 }
 
 /**
@@ -283,7 +283,7 @@ var setupListeners = () => {
 
 // Touche ESC pressée -> on ferme la modale
 document.addEventListener('keydown', e => {
-    if (modalContainer.getAttribute('aria-hidden') == 'false' && e.key === "Escape") {
+    if (modalContainer.getAttribute('aria-hidden') == 'true' && e.key === "Escape") {
         closeModal()
     }
 })

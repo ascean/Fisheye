@@ -6,8 +6,6 @@ let nbImages = 0 //nombre d'images contenues dans le portfolio
 let currentImg = 0  //numéro de l'image actuelle affichée dans le carrousel
 
 const carrousel = document.getElementById("carrousel");
-//const leftButton = document.querySelectorAll(".controls-left")
-//const rightButton = document.querySelectorAll(".controls-right")
 
 /**
  * Affichage du carrousel en fonction de l'image sélectionnée dans le portfolio
