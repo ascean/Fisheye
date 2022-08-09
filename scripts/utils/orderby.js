@@ -1,5 +1,4 @@
 /***********************************GESTION DU TRI DU PORTFOLIO****************************************************** */
-let navbar      = document.getElementById("navbar")
 const ssnavbar  = document.getElementById("ssnavbar")
 
 let allLi
