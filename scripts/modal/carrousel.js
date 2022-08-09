@@ -1,4 +1,6 @@
 /**********************************GESTION DU CARROUSEL******************************************** */
+const BODY = document.getElementById('body')
+const MAIN = document.getElementById('main')
 
 let nbImages = 0 //nombre d'images contenues dans le portfolio
 let currentImg = 0  //numéro de l'image actuelle affichée dans le carrousel
