@@ -1,33 +1,33 @@
 /***********************************GESTION DU TRI DU PORTFOLIO****************************************************** */
+let navbar      = document.getElementById("navbar")
+const ssnavbar  = document.getElementById("ssnavbar")
 
-const liPopularite  = document.getElementById("popularite")
-const navbarSpan    = liPopularite.getElementsByTagName("span")
-const liNavbar      = document.getElementsByTagName("li")
-const ssnavbar      = document.getElementById("ssnavbar")
+let allLi
+let tabOrder = {}
 
 /**
  * Tri du tableau des médias en fonction du critère choisi
- * @param {string} type "popularité", "date" ou"titre"
+ * @param {string} type 1 = "popularité", 2 = "date" ou 3 = "titre"
  */
 function orderbyArray(type) {
-
+    
     switch (type) {
-    case "popularite":
-        photographersArray[idPhotographer][1].sort((a,b) => {
+        case "1"://"popularite":
+            photographersArray[idPhotographer][1].sort((a,b) => {
             return a.likes - b.likes
         })
         break;
-    case "date":
-        photographersArray[idPhotographer][1].sort((a,b) => {
+        case "2": //"date":
+            photographersArray[idPhotographer][1].sort((a,b) => {
             return a.date.localeCompare(b.date)
         })
         break;
-    case "titre":
-        photographersArray[idPhotographer][1].sort((a,b) => {
-            return a.title.localeCompare(b.title)
-        })
-        break;
-    default:
+        case "3": //"titre":
+            photographersArray[idPhotographer][1].sort((a,b) => {
+                return a.title.localeCompare(b.title)
+            })
+            break;
+            default:
     }
 
 }
@@ -38,39 +38,53 @@ function orderbyArray(type) {
  */
 function selectOrderBy(ev) {
 
+    //récup de l'identifiant et màj de l'ordre du menu de tri
     let choice = ev.target.parentNode.id;
+    let num = choice.substring(7,8)
+        switch (num) {
+            case "1":
+                tabOrder = [ {"orderby1":"Popularité"}, {"orderby2":"Date"}, {"orderby3":"Titre"} ]
+                break;
+            case "2":
+                tabOrder = [ {"orderby2":"Date"}, {"orderby1":"Popularité"}, {"orderby3":"Titre"} ]
+                break;
+            case "3":
+                tabOrder = [ {"orderby3":"Titre"}, {"orderby1":"Popularité"}, {"orderby2":"Date"} ]
+                break;
+            default:
+                tabOrder = [ {"orderby1":"Popularité"}, {"orderby2":"Date"}, {"orderby3":"Titre"} ]
+                break;
+        }
+    
+    //màj du DOM du menu de tri
+    const navbarContainer = document.getElementById("navbar-container")
+    navbarContainer.innerHTML = ""
 
-    //Toutes les options de tri ont un background de la couleur d'origine
-    for (let i = 0; i < liNavbar.length; i++) {
-        const element = liNavbar[i];
-        element.style.backgroundColor = "#901C1C"
-    }
+    const orderDOM = `
+                    <ul id="navbar">
+                        <li id="${Object.keys(tabOrder[0])}">
+                            <span>${Object.values(tabOrder[0])}</span>
+                            <ul id="ssnavbar">
+                                <li id="${Object.keys(tabOrder[1])}"><span>${Object.values(tabOrder[1])}</span></li>
+                                <li id="${Object.keys(tabOrder[2])}"><span>${Object.values(tabOrder[2])}</span></li>
+                            </ul>
+                        </li>
+                    </ul>`
+                            
+    navbarContainer.innerHTML = orderDOM
+                     
+    //màj des fonctions d'écoute pour prise en compte du nouveau DOM
+    setupListenersFunctions()
     
-    //on change la couleur du background, uniquement pour la 1ère option
-    if (choice != "popularite") {
-        ev.target.parentNode.style.backgroundColor = "black";
-    }
-    
-    //Choix différent du choix précédemment affiché
-    if (choice != navbarSpan[0].innerHTML) {
+    //tri du tableau de données
+    orderbyArray(num)
         
-        //màj du sélecteur : repli + texte de la 1ère option de menu (visible)= option de tri choisie
-        ssnavbar.style.display="none"
-        navbarSpan[0].innerHTML = choice.charAt(0).toUpperCase() + choice.substring(1).toLowerCase();
-        
-        //tri du tableau de données
-        orderbyArray(choice)
-        
-        //affichage des médias en fonction du critère de tri
-        displayPortfolio(photographersArray[idPhotographer][1])
-    }
+    //affichage des médias en fonction du critère de tri
+    displayPortfolio(photographersArray[idPhotographer][1])
 }
 
 //ouverture du menu de tri
-function openNavbarOrderby() {
-
-    //la 1ère option du menu ouvert est celle d'origine
-    navbarSpan[0].innerHTML = "Popularité";
+function openNavbarOrderby() {    
     ssnavbar.style.display="block"
 }
 
@@ -79,14 +93,23 @@ function closeNavbarorderby() {
     ssnavbar.style.display="none"
 }
 
-
 //*************************************GESTION DES LISTENERS*************************************
-//écoute du clic sur les 3 options
-for (let i = 0; i < liNavbar.length; i++) {
-    const element = liNavbar[i];
-    element.addEventListener("click", selectOrderBy) 
+function setupListenersFunctions () {
+    
+    let navbar  = document.getElementById("navbar")
+    allLi       = navbar.getElementsByTagName("li")
+    navbarSpan  = allLi[0].getElementsByTagName("span")
+
+    for (let i = 0; i < allLi.length; i++) {
+        const element = allLi[i];
+        //écoute du clic -> selection
+        element.addEventListener("click", selectOrderBy) 
+        //écoute du mouveleave -> fermeture
+        element.addEventListener("mouseleave", closeNavbarorderby)
+        //écoute du mouseover -> ouverture
+        element.addEventListener("mouseover", openNavbarOrderby)
+    }
 }
-//ouverture du menuau survol
-liPopularite.addEventListener("mouseover", openNavbarOrderby)
-//fermeture quand survol terminé
-liPopularite.addEventListener("mouseleave", closeNavbarorderby)
+
+//Lancement des listeners
+setupListenersFunctions()

@@ -144,7 +144,7 @@ var init = async () => {
 
     //appelé dans orderby.js 
     //tri du tableau photographersArray selon l'ordre par défaut = popularité
-    orderbyArray("popularite")
+    orderbyArray("1")
 
     //affichage des données médias du photographe concerné dans le portfolio
     displayPortfolio(photographersArray[idPhotographer][1])

@@ -158,11 +158,11 @@ span {
   top: 50px;
 }
 
-#popularite {
+#navbar > li {
   position: relative;
   border-radius: 5px;
 }
-#popularite::after {
+#navbar > li::after {
   color: white;
   position: absolute;
   right: 0;
@@ -171,7 +171,7 @@ span {
   font: var(--fa-font-solid);
   content: "\f078";
 }
-#popularite:hover::after {
+#navbar > li:hover::after {
   font: var(--fa-font-solid);
   content: "\f077";
 }
