@@ -18,6 +18,7 @@ var displayCarrousel = (idMedia) => {
     //création de l'élément carrousel-container
     const carrouselContainer = document.createElement("ul")
     carrouselContainer.setAttribute("id", "carrousel-container")
+    carrouselContainer.setAttribute("role", "list-box")
     //ajout du nom du photographe dans aria-label du carrousel
     let name = mediasPhotographer[0].name
     carrouselContainer.setAttribute("aria-label", `Images et vidéos de ${name}`)

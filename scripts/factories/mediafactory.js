@@ -110,7 +110,7 @@ var mediaFactory = (data) => {
                     <span class="img prev-image">
                         <i aria-hidden="true" class="fa fa-chevron-left"></i>
                     </span>
-                    <p class="sr-only">Previous</p>
+                    <p class="sr-only">Média précédent</p>
                 </button>
                 
                 <article>
@@ -122,7 +122,7 @@ var mediaFactory = (data) => {
                     <span class="img next-image" >
                         <i aria-hidden="true" class="fa fa-chevron-right"></i>
                     </span>
-                    <p class="sr-only">Next</p>
+                    <p class="sr-only">Média suivant</p>
                 </button>`
             imageNumber = imageNumber + 1
 

@@ -33,7 +33,7 @@ var photographerFactory = (data) => {
                 `<a href=photographer.html?id=${id} aria-label="${name}">
                     <img src=${picture} class="img-photographer" alt="Photo de ${name}">
                 </a>
-                <h2  tabindex="0"                                   >${name}</h2>
+                <h2 tabindex="0">${name}</h2>
                 <div class="infos">
                     <p class="localisation" tabindex="0">${city}, ${country}</p>
                     <p tabindex="0">${tagline}</p>
@@ -49,7 +49,7 @@ var photographerFactory = (data) => {
                     <p class="tagline" tabindex="0">${tagline}</p>
                 </div>
                 <button id="contact-button" class="contact-button" onclick="displayModal('${name}')">Contactez-moi</button>
-                <img src="${picture}" class="img-photographer" alt="Photo de ${name}">`
+                <img src="${picture}" class="img-photographer" alt="Photo de ${name}" tabindex="0">`
                 
         }
 
