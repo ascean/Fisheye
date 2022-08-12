@@ -34,13 +34,13 @@ var photographerFactory = (data) => {
 
             ARTICLE.innerHTML =
                 `<a href=photographer.html?id=${id} aria-label="${name}">
-                    <img src=${picture} class="img-photographer" alt="${name}">
-                    <h2>${name}</h2>
+                    <img src=${picture} class="img-photographer" alt="Photo de ${name}">
                 </a>
+                <h2  tabindex="0"                                   >${name}</h2>
                 <div class="infos">
-                    <p class="localisation">${city}, ${country}</p>
-                    <p>${tagline}</p>
-                    <p class="price">${price}€/jour</p>
+                    <p class="localisation" tabindex="0">${city}, ${country}</p>
+                    <p tabindex="0">${tagline}</p>
+                    <p class="price" tabindex="0">${price}€/jour</p>
                 </div>`
 
         } else {
@@ -48,11 +48,11 @@ var photographerFactory = (data) => {
             ARTICLE.innerHTML = 
                 `<div class="photograph-infos">
                     <h1>${name}</h1>
-                    <p class="localisation">${city}, ${country}</p>
-                    <p class="tagline">${tagline}</p>
+                    <p class="localisation" tabindex="0">${city}, ${country}</p>
+                    <p class="tagline" tabindex="0">${tagline}</p>
                 </div>
                 <button id="contact-button" class="contact-button" onclick="displayModal('${name}')">Contactez-moi</button>
-                <img src="${picture}" class="img-photographer" alt=${name}>`
+                <img src="${picture}" class="img-photographer" alt="Photo de ${name}">`
                 
         }
 

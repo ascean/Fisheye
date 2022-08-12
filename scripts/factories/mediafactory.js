@@ -32,15 +32,15 @@ var mediaFactory = (data) => {
             //media = image
             if (image) {
                 picture = `
-                    <a href="#">
-                    <img src = ./assets/images/${photographerId}/${image} alt=${image} onclick="displayCarrousel(${id})">
+                    <a href="#" onclick="displayCarrousel(${id})" tabindex="0" class="media-portfolio">
+                    <img src = ./assets/images/${photographerId}/${image} alt=${image} >
                     </a>
                     `
             //media = video
             }else{
                 picture = `
                     <i class="fa-solid fa-circle-play"></i>
-                    <a href="#" onclick="displayCarrousel(${id})" >
+                    <a href="#" onclick="displayCarrousel(${id})" tabindex="0" class="media-portfolio">
                         <video>
                             <source src = ./assets/images/${photographerId}/${video} type="video/mp4" alt=${video} >
                         </video>
@@ -54,10 +54,10 @@ var mediaFactory = (data) => {
                 `${picture} 
                 <div class="photo-infos">
                     <p class="photo-title">${title}</p>
-                    <div id=like${id} class="likes" aria-label="likes" onClick="addLike(${id})">
+                    <a href="#like${id}" id=like${id} class="likes" aria-label="likes" onClick="addLike(${id})" tabindex="0">
                         ${likes}
                         <span class="fa fa-heart ${noClicable}"></span>
-                    </div>
+                    </a>
                 </div>`
             
             mediaLikes = mediaLikes + likes
@@ -88,7 +88,7 @@ var mediaFactory = (data) => {
                 
                 picture = 
                     `<a href="#">
-                        <video controls>
+                        <video controls controlslist="nofullscreen">
                             <source src = ./assets/images/${photographerId}/${video} type="video/mp4" alt=${video} 
                                 class="carrousel-img">
                         </video>
@@ -96,29 +96,29 @@ var mediaFactory = (data) => {
             }
 
             article.innerHTML = 
-                `<button class="carrousel-close-button" aria-label="Fermer la fenêtre">
+                `<button class="carrousel-close-button" aria-label="Fermer la fenêtre" onclick=closeCarrousel()>
                     <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z" fill="white"/>
                     </svg>
                 </button>
-                <div role="button" class="controls controls-left">
-                    <span class="img prev-image" onclick=changeCarrousel("prev")>
+                <button class="controls controls-left" onclick=changeCarrousel("prev")>
+                    <span class="img prev-image">
                         <i aria-hidden="true" class="fa fa-chevron-left"></i>
                     </span>
                     <p class="sr-only">Previous</p>
-                </div>
+                </button>
                 
                 <article>
                     ${picture}
                     <h2 class="photo-title">${title}</h2>
                 </article>
 
-                <div role="button" class="controls controls-right">
-                    <span class="img next-image" onclick=changeCarrousel("next")>
+                <button class="controls controls-right" onclick=changeCarrousel("next")>
+                    <span class="img next-image" >
                         <i aria-hidden="true" class="fa fa-chevron-right"></i>
                     </span>
                     <p class="sr-only">Next</p>
-                </div>`
+                </button>`
             imageNumber = imageNumber+1
 
         }

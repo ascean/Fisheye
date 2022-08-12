@@ -19,6 +19,7 @@ body {
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
+  max-width: 1920px;
   margin-top: 30px;
   position: relative;
 }
@@ -38,7 +39,7 @@ header {
   height: 50px;
 }
 
-.hidden {
+.sr-only {
   height: 1px;
   width: 1px;
   left: 0;
@@ -69,10 +70,15 @@ a {
   position: relative;
   color: white;
 }
-
-span {
+#navbar-container a {
   padding-left: 10px;
   cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+#navbar-container a:focus-visible, #navbar-container a:hover {
+  outline: none;
+  font-size: 1.2em;
 }
 
 #navbar {
@@ -108,14 +114,14 @@ span {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-#navbar li ul li:nth-child(1) span {
+#navbar li ul li:nth-child(1) a {
   width: 80%;
   height: 50px;
   border-radius: 0px;
   border-top: 1px solid white;
   margin: 0 auto;
 }
-#navbar li ul li:nth-child(2) span {
+#navbar li ul li:nth-child(2) a {
   border-top: 1px solid white;
   margin: 0 auto;
   width: 80%;
@@ -124,7 +130,7 @@ span {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-#navbar li span {
+#navbar li a {
   text-decoration: none;
   display: block;
   height: 50px;
@@ -134,12 +140,19 @@ span {
   border-radius: 5px;
   position: relative;
 }
-#navbar li span::after {
+#navbar li a::after {
   content: "";
 }
-#navbar li span:hover {
+#navbar li a:hover {
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
+}
+
+#orderby1:focus, #orderby2:focus, #orderby3:focus {
+  color: orange;
+}
+#orderby1:focus-visible, #orderby2:focus-visible, #orderby3:focus-visible {
+  color: yellow;
 }
 
 #ssnavbar {
@@ -408,6 +421,8 @@ form .text-control {
 
 .controls {
   color: #901C1C;
+  border: none;
+  background: none;
 }
 .controls-left {
   position: absolute;
@@ -613,6 +628,9 @@ header > h1 {
   gap: 5px;
   color: #901C1C;
   height: 30px;
+}
+#portfolio article .photo-infos a {
+  color: #901C1C;
 }
 #portfolio article .photo-infos .noClicable {
   color: #D3573C;

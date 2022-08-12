@@ -199,7 +199,7 @@ var listenerFunction = {
  */
 //eslint-disable-next-line no-unused-vars
 var displayModal = (name) => {
-
+    console.log("ok ");
     initErrors()
     //affichage de la modale
     modalContainer.style.display = "flex";
@@ -213,7 +213,8 @@ var displayModal = (name) => {
     modalTitle.innerHTML = `Contactez-moi<br>` + name
 
     //prise de focus par le bouton de fermeture
-    document.getElementById('modal-close-button').focus()
+    let modalButton = document.getElementById('modal-close-button')
+    modalButton.focus()
 
 }
 

@@ -104,15 +104,16 @@ var displayPortfolio = async (medias) => {
         bottomLikes.setAttribute('id', "bottom-likes")
         bottomLikes.innerHTML =
             `<div class="likes">
-                <p id="likes-number">${totalLikes}</p>
-                <span class="fa fa-heart"></span>
+                <p id="likes-number" aria-label="Nombre total de likes" tabindex="0">${totalLikes}</p>
+                <span class="fa fa-heart" aria-hidden="true"></span>
             </div>
-            <div class="price">${price}€ / jour</div>`
+            <div class="price"aria-label="Prix" tabindex="0">${price}€ / jour</div>`
         
         //Ajout au DOM
         portfolioContainer.appendChild(bottomLikes);
     }
 
+    
 };
 
 
@@ -152,6 +153,12 @@ var init = async () => {
     //affichage des données médias du photographe concerné dans le portfolio
     displayPortfolio(photographersArray[idPhotographer][1])
 
+    //récup du focus par le bouton Contactez-moi
+    setTimeout(() => {
+        document.getElementById('contact-button').focus()
+      }, "1000")
+
+
 }
 
 
@@ -167,8 +174,8 @@ var addLike = (idMedia) => {
     //vérification de l'existence de l'identifiant sur le média
     //si identifiant, média pas encore liké
     //idLike = "likexxxxxx" (xxxxx : identifiant du média)
-    const idLike = document.getElementById(`like${idMedia}`)
-
+    let idLike = document.getElementById(`like${idMedia}`)
+    
     if (idLike) {
         
         //mediasPhotographers contient l'ensemble des médias du photographe idPhotographer
@@ -199,6 +206,7 @@ var addLike = (idMedia) => {
             
         }
     }
+    idLike = document.getElementById(`like${idMedia}`)
 }
 
 init();
