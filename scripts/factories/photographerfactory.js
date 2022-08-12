@@ -8,9 +8,6 @@
 //eslint-disable-next-line no-unused-vars
 var photographerFactory = (data) => {
 
-    //const { name, id, city, country, tagline, price, portrait } = data 
-    //équivaut à:
-
     const name      = data.name
     const id        = data.id
     const city      = data.city

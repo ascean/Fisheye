@@ -39,6 +39,10 @@ header {
   height: 50px;
 }
 
+a {
+  text-decoration: none;
+}
+
 .sr-only {
   height: 1px;
   width: 1px;
@@ -48,16 +52,12 @@ header {
   top: -10000px;
 }
 
-a {
-  text-decoration: none;
-}
-
 #orderby-container {
   margin: 30px 0px;
   display: flex;
   flex-direction: row;
 }
-#orderby-container #navbar-label {
+#orderby-container label {
   font-size: 18px;
   font-weight: bold;
   margin-right: 30px;
@@ -146,13 +146,6 @@ a {
 #navbar li a:hover {
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
-}
-
-#orderby1:focus, #orderby2:focus, #orderby3:focus {
-  color: orange;
-}
-#orderby1:focus-visible, #orderby2:focus-visible, #orderby3:focus-visible {
-  color: yellow;
 }
 
 #ssnavbar {
@@ -274,7 +267,7 @@ form {
   justify-content: normal;
   align-items: flex-start;
   gap: 0px;
-  margin-top: 10px 0px;
+  margin-top: 10px;
 }
 form .formData {
   width: 100%;
