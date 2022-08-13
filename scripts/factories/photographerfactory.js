@@ -44,11 +44,12 @@ var photographerFactory = (data) => {
             //affichage du photographe sélectionné sur la page photographer.html
             ARTICLE.innerHTML = 
                 `<div class="photograph-infos">
-                    <h1>${name}</h1>
+                    <h1 tabindex="0">${name}</h1>
                     <p class="localisation" tabindex="0">${city}, ${country}</p>
                     <p class="tagline" tabindex="0">${tagline}</p>
                 </div>
-                <button id="contact-button" class="contact-button" onclick="displayModal('${name}')">Contactez-moi</button>
+                <button id="contact-button" class="contact-button" 
+                    onclick="displayModal('${name}')">Contactez-moi</button>
                 <img src="${picture}" class="img-photographer" alt="Photo de ${name}" tabindex="0">`
                 
         }

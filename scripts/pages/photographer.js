@@ -73,7 +73,8 @@ var displayPortfolio = async (medias) => {
         portfolio = document.createElement("div");
         portfolio.setAttribute("id","portfolio")
         portfolioContainer.appendChild(portfolio)
-    //si le portfolio existe, on supprimer son contenu (nécessaire suite au tri)
+
+    //si le portfolio existe, on supprime son contenu (nécessaire suite au tri)
     }else{
         portfolio.innerHTML=""
     }
@@ -153,19 +154,13 @@ var init = async () => {
     //affichage des données médias du photographe concerné dans le portfolio
     displayPortfolio(photographersArray[idPhotographer][1])
 
-    //récup du focus par le bouton Contactez-moi
-    setTimeout(() => {
-        document.getElementById('contact-button').focus()
-      }, "1000")
-
-
 }
 
 
 /**
  * gestion du clic sur le nombre de likes
  * +1 au clic puis blocage par suppression de l'identifiant + modif champ clicable (utile quand on recharge les médias suite au tri)
- * appelée depuis clic sur le coeur sous chaque média (implémentation dans le DOM)
+ * appelée depuis clic (ou ENTRÉE sur le coeur sous chaque média (implémentation dans le DOM)
  * @param {string} idMedia 
  */
 //eslint-disable-next-line no-unused-vars
@@ -206,7 +201,6 @@ var addLike = (idMedia) => {
             
         }
     }
-    idLike = document.getElementById(`like${idMedia}`)
 }
 
 init();

@@ -5,6 +5,32 @@ let currentImg = 0  //numéro de l'image actuelle affichée dans le carrousel
 const carrousel = document.getElementById("carrousel");
 
 /**
+ * Affichage du média sélectionné, masquage des autres / gestion TA avec aria-hidden
+ * @param {string} idMedia identifiant du média sélectionné dans le portfolio
+ */
+var displayMedia = (idMedia) => {
+
+    const carrouselItems = document.querySelectorAll(".carrousel-item")
+    const portfolio = document.getElementById("portfolio");
+    const portfolioItems = portfolio.getElementsByTagName('article')
+    for (let i = 0; i < portfolioItems.length; i++) {
+
+        //média sélectionné depuis le portofolio : affiché dans le carrousel + gestion TA
+        if (portfolioItems[i].id == idMedia) {
+            carrouselItems[i].classList.remove("display-none")
+            carrouselItems[i].setAttribute("aria-hidden", "true")
+            currentImg = i
+
+            //tous les autres médias : masqués dans le carrousel + gestion TA
+        } else {
+            carrouselItems[i].classList.add("display-none")
+            carrouselItems[i].setAttribute("aria-hidden", "false")
+        }
+    }
+
+}
+
+/**
  * Affichage du carrousel en fonction de l'image sélectionnée dans le portfolio
  * @param {string} idMedia : identifiant du média cliqué dans le portfolio
  */
@@ -39,27 +65,8 @@ var displayCarrousel = (idMedia) => {
         carrouselContainer.appendChild(carrouselDOM)
     });
 
-    const carrouselItems = document.querySelectorAll(".carrousel-item")
-
-    //mise en place du carrousel pour affichage de l'image sélectionnée idMedia
-    //l'identifiant de l'image est l'id de l'article dans le portfolio
-    //gestion display + TA
-    const portfolio = document.getElementById("portfolio");
-    const portfolioItems = portfolio.getElementsByTagName('article')
-    for (let i = 0; i < portfolioItems.length; i++) {
-
-        //média sélectionné depuis le portofolio : affiché dans le carrousel + gestion TA
-        if (portfolioItems[i].id == idMedia) {
-            carrouselItems[i].classList.remove("display-none")
-            carrouselItems[i].setAttribute("aria-hidden", "true")
-            currentImg = i
-
-            //tous les autres médias : masqués dans le carrousel + gestion TA
-        } else {
-            carrouselItems[i].classList.add("display-none")
-            carrouselItems[i].setAttribute("aria-hidden", "false")
-        }
-    }
+    //affichage du média sélectionné dans le portfolio (idMedia)
+    displayMedia(idMedia)
     
     //affichage du carrousel (pleine page) + gestion TA
     carrouselContainer.style.display = "flex";
@@ -171,10 +178,8 @@ document.addEventListener('keydown', e => {
             case "ArrowLeft":
                 changeCarrousel("prev")
                 break;
-
             default:
                 break;
         }
-
     }
 })

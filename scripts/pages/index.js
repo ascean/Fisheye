@@ -12,7 +12,10 @@
 
     }
 
-    //async function displayData(photographers) { 
+    /**
+     * Traitement des données JSON et affichage dans le DOM
+     * @param {object} photographers 
+     */
     var displayPhotographers  = async (photographers) => {    
         
         //sélection de l'élément du DOM dans lequel on va ajouter les infos
@@ -34,16 +37,9 @@
         });
     };
 
-    //async function init() {
     var init = async() => { 
 
         // Récupère les datas du tableau photographers du JSON
-        /*const { photographers } = await getPhotographers();
-                    équivaut à : 
-        const datas = await getPhotographers()
-        const photographers = datas.photographers
-        */
-       
         const datas = await getPhotographers()
         const photographers = datas.photographers
 

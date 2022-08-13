@@ -26,25 +26,26 @@ var mediaFactory = (data) => {
     var getMediaCardDOM = function (type) {
 
         let article; let picture;
+        let altParam = ""
 
         //DOM pourle portfolio + maj du nombre de likes
         if (type == "portfolio") {
             //media = image
             if (image) {
+                altParam = image.split('.')[0]
                 picture = `
-                    <a href="javascript:displayCarrousel(${id})" tabindex="0" class="media-portfolio">
-                        <span class="sr-only">${image}</span>
-                    <img src = ./assets/images/${photographerId}/${image} alt=${image} >
-                    </a>
-                    `
+                <a href="javascript:displayCarrousel(${id})" tabindex="0" class="media-portfolio">
+                <img src = ./assets/images/${photographerId}/${image} alt=${altParam} >
+                </a>
+                `
                 //media = video
             } else {
+                altParam = video.split('.')[0]
                 picture = `
                     <i class="fa-solid fa-circle-play"></i>
                     <a href="javascript:displayCarrousel(${id})" tabindex="0" class="media-portfolio">
-                        <span class="sr-only">${video}</span>
                         <video>
-                            <source src = ./assets/images/${photographerId}/${video} type="video/mp4" alt=${video} >
+                            <source src = ./assets/images/${photographerId}/${video} type="video/mp4" alt=${altParam} >
                         </video>
                     </a>
                     `
@@ -55,15 +56,14 @@ var mediaFactory = (data) => {
             article.innerHTML =
                 `${picture} 
                 <div class="photo-infos">
-                    <p class="photo-title">${title}</p>
+                    <p class="photo-title" tabindex="0">${title}</p>
                     <a href="#like${id}" id=like${id} class="likes" aria-label="likes" onClick="addLike(${id})" tabindex="0">
-                        ${likes}
+                        <span aria-label="Nombre de likes ${likes}" tabindex="0">${likes}</span>
                         <span class="fa fa-heart ${noClicable}"></span>
                     </a>
                 </div>`
 
             mediaLikes = mediaLikes + likes
-
         //DOM pour le carrousel
         } else if (type == "carrousel") {
 
@@ -84,17 +84,18 @@ var mediaFactory = (data) => {
 
             //media = image
             if (image) {
+                altParam = image.split('.')[0]
                 picture = 
                     `<a href="#">
-                        <img src = ./assets/images/${photographerId}/${image} alt=${image} class="carrousel-img">
+                        <img src = ./assets/images/${photographerId}/${image} alt=${altParam} class="carrousel-img">
                     </a>`
             //media = video
             } else {
+                altParam = video.split('.')[0]
                 picture =
                     `<a href="#">
                         <video controls controlslist="nofullscreen">
-                            <span class="sr-only">${video}</span>
-                            <source src = ./assets/images/${photographerId}/${video} type="video/mp4" alt=${video} 
+                            <source src = ./assets/images/${photographerId}/${video} type="video/mp4" alt=${altParam} 
                                 class="carrousel-img">
                         </video>
                     </a>`

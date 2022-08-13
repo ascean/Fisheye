@@ -60,19 +60,27 @@ var selectOrderBy = (id) => {
     }
 
     //màj du DOM du menu de tri : navbarcontainer
-    const orderDOM = ` <ul id="navbar" role="menubar" aria-label="Tri par ${Object.values(tabOrder[0])}">
-                            <li id="${Object.keys(tabOrder[0])}">
-                                <a href="#menu-link1" id="menu-link1" class="menu-link" onclick="selectOrderBy('${Object.keys(tabOrder[0])[0].substring(7, 8)}')" role="menuitem" tabindex="0">${Object.values(tabOrder[0])}</a>
-                                <ul id="ssnavbar" role="menu" aria-label="Autres tris">
-                                    <li id="${Object.keys(tabOrder[1])}">
-                                        <a href="#menu-link2" id="menu-link2" class="menu-link" onclick="selectOrderBy('${Object.keys(tabOrder[1])[0].substring(7, 8)}')" role="menuitem" aria-haspopup="false" tabindex="0">${Object.values(tabOrder[1])}</a>
-                                    </li>
-                                    <li id="${Object.keys(tabOrder[2])}">
-                                        <a href="#menu-link3" id="menu-link3" class="menu-link" onclick="selectOrderBy('${Object.keys(tabOrder[2])[0].substring(7, 8)}')" role="menuitem" aria-haspopup="false" tabindex="0">${Object.values(tabOrder[2])}</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>`
+    const orderDOM = 
+        ` <ul id="navbar" role="menubar" aria-label="Tri par ${Object.values(tabOrder[0])}">
+            <li id="${Object.keys(tabOrder[0])}">
+                <a href="#menu-link1" id="menu-link1" class="menu-link" 
+                    onclick="selectOrderBy('${Object.keys(tabOrder[0])[0].substring(7, 8)}')" 
+                    role="menuitem" tabindex="0" aria-labelleby="navbar">${Object.values(tabOrder[0])}</a>
+                <ul id="ssnavbar" role="menu" aria-label="Autres tris">
+                    <li id="${Object.keys(tabOrder[1])}">
+                        <a href="#menu-link2" id="menu-link2" class="menu-link" 
+                        onclick="selectOrderBy('${Object.keys(tabOrder[1])[0].substring(7, 8)}')" 
+                        role="menuitem" aria-haspopup="false" tabindex="0">${Object.values(tabOrder[1])}</a>
+                    </li>
+                    <li id="${Object.keys(tabOrder[2])}">
+                        <a href="#menu-link3" id="menu-link3" class="menu-link" 
+                        onclick="selectOrderBy('${Object.keys(tabOrder[2])[0].substring(7, 8)}')" 
+                        role="menuitem" aria-haspopup="false" tabindex="0">${Object.values(tabOrder[2])}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>`
+        
     navbarContainer.innerHTML = orderDOM
 
     //tri du tableau de données
