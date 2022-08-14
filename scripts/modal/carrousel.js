@@ -41,6 +41,8 @@ var displayCarrousel = (idMedia) => {
     // eslint-disable-next-line no-undef
     let mediasPhotographer = photographersArray[idPhotographer]
 
+    const h2Carrousel = document.getElementById("h2carrousel")
+    h2Carrousel.setAttribute("aria-hidden","false")
     //création de l'élément carrousel-container
     const carrouselContainer = document.createElement("ul")
     carrouselContainer.setAttribute("id", "carrousel-container")
