@@ -384,7 +384,7 @@ form .text-control {
   position: relative;
   display: none;
 }
-#carrousel ul#carrousel-container article img, #carrousel ul#carrousel-container article video {
+#carrousel ul#carrousel-container .carrousel-img {
   max-width: 80vw;
   max-height: 80vh;
 }
@@ -436,6 +436,7 @@ form .text-control {
 .fa-chevron-left,
 .fa-chevron-right {
   font-size: 40px;
+  cursor: pointer;
 }
 
 header > h1 {

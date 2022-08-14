@@ -103,7 +103,6 @@ var setupListenersFunctions = () => {
 
     window.addEventListener('focus', function (e) {
         //ouverture du menu s'il a le focus
-        console.log(e.target.id);
         let idFocus  = e.target.id
         if ((idFocus === "menu-link1") || (idFocus === "menu-link2") || (idFocus === "menu-link3")) {
             let ssnavbar =      document.getElementById("ssnavbar")

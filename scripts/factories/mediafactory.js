@@ -33,11 +33,12 @@ var mediaFactory = (data) => {
             //media = image
             if (image) {
                 altParam = image.split('.')[0]
-                picture = `
-                <a href="javascript:displayCarrousel(${id})" tabindex="0" class="media-portfolio">
-                <img src = ./assets/images/${photographerId}/${image} alt=${altParam} >
-                </a>
-                `
+                picture = 
+                    `
+                        <a href="javascript:displayCarrousel(${id})" tabindex="0" class="media-portfolio">
+                            <img src = ./assets/images/${photographerId}/${image} alt=${altParam} >
+                        </a>
+                    `
                 //media = video
             } else {
                 altParam = video.split('.')[0]
@@ -72,7 +73,7 @@ var mediaFactory = (data) => {
                 imageNumber = 0
             }
 
-            //création de la ballise article
+            //création de la balise article
             article = document.createElement('li')
             article.setAttribute("id", `item-${imageNumber}`)
             article.classList.add("carrousel-item")
@@ -86,19 +87,23 @@ var mediaFactory = (data) => {
             if (image) {
                 altParam = image.split('.')[0]
                 picture = 
-                    `<a href="#">
-                        <img src = ./assets/images/${photographerId}/${image} alt=${altParam} class="carrousel-img">
-                    </a>`
+                    `
+                    <div role="button" aria-label = ${altParam} tabindex="-1">
+                        <img src = ./assets/images/${photographerId}/${image} alt=${altParam}   class="carrousel-img" tabindex="0">
+                    </div>
+                        `
             //media = video
             } else {
                 altParam = video.split('.')[0]
                 picture =
-                    `<a href="#">
+                    `
+                        <div role="button" aria-label = ${altParam} tabindex="-1">
                         <video controls controlslist="nofullscreen">
                             <source src = ./assets/images/${photographerId}/${video} type="video/mp4" alt=${altParam} 
                                 class="carrousel-img">
                         </video>
-                    </a>`
+                        </div>
+                    `
             }
 
             article.innerHTML =
@@ -107,24 +112,19 @@ var mediaFactory = (data) => {
                         <path d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z" fill="white"/>
                     </svg>
                 </button>
-                <button class="controls controls-left" onclick=changeCarrousel("prev")>
-                    <span class="img prev-image">
-                        <i aria-hidden="true" class="fa fa-chevron-left"></i>
-                    </span>
-                    <p class="sr-only">Média précédent</p>
-                </button>
+                <div onclick=changeCarrousel("prev") role="button" class="controls controls-left" aria-label="Média précédent" tabindex="0">
+                    <i onclick=changeCarrousel("prev") class="fa fa-chevron-left" tabindex="-1" aria-label="Média précédent"></i>
+                </div>
                 
                 <article>
-                    ${picture}
-                    <h2 class="photo-title">${title}</h2>
+                ${picture}
+                <h2 class="photo-title">${title}</h2>
                 </article>
-
-                <button class="controls controls-right" onclick=changeCarrousel("next")>
-                    <span class="img next-image" >
-                        <i aria-hidden="true" class="fa fa-chevron-right"></i>
-                    </span>
-                    <p class="sr-only">Média suivant</p>
-                </button>`
+                
+                <div onclick=changeCarrousel("next") role="button" class="controls controls-right" aria-label="Média suivant" tabindex="0">
+                    <i onclick=changeCarrousel("next") class="fa fa-chevron-right" tabindex="-1" aria-label="Média suivant"></i>
+                </div>
+                `
             imageNumber = imageNumber + 1
 
         }

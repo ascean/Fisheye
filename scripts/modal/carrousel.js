@@ -41,8 +41,8 @@ var displayCarrousel = (idMedia) => {
     // eslint-disable-next-line no-undef
     let mediasPhotographer = photographersArray[idPhotographer]
 
-    const h2Carrousel = document.getElementById("h2carrousel")
-    h2Carrousel.setAttribute("aria-hidden","false")
+    carrousel.innerHTML = `<h2 id="h2carrousel" class="sr-only" aria-hidden="true">Carrousel</h2>`
+
     //création de l'élément carrousel-container
     const carrouselContainer = document.createElement("ul")
     carrouselContainer.setAttribute("id", "carrousel-container")
@@ -82,7 +82,8 @@ var displayCarrousel = (idMedia) => {
     // eslint-disable-next-line no-undef
     BODY.classList.add('no-scroll')
       
-    focusClose()
+    const articleCarrousel = document.getElementsByTagName("article")[currentImg]
+    articleCarrousel.focus()
 }
 
 /**
@@ -90,17 +91,17 @@ var displayCarrousel = (idMedia) => {
  * @param {string} direction = "next" ou "prev"
  */
 var changeCarrousel = (direction) => {
-
-    const carrouselItems = document.querySelectorAll(".carrousel-item")
-
+    console.log(direction);
+    const carrouselItems =  document.querySelectorAll(".carrousel-item")
+    
     //numéro de la prochaine image à afficher
     let nextImg
-
+    
     //1er lancement, on initialise le nombre d'images du carrousel à partir du nombre total d'éléménts dans le DOM
     if (nbImages == 0) {
         nbImages = carrouselItems.length
     }
-
+    
     //image suivante : fonction de l'image courante + gestion si dernière image
     if (direction == "next") {
         if (currentImg == nbImages - 1) {
@@ -116,7 +117,7 @@ var changeCarrousel = (direction) => {
             nextImg = currentImg - 1
         }
     }
-
+    
     //on affiche l'image nextImg + TA
     carrouselItems[nextImg].classList.remove("display-none")
     carrouselItems[nextImg].setAttribute("aria-hidden", "true")
@@ -124,28 +125,18 @@ var changeCarrousel = (direction) => {
     //on cache l'image courante currentImg + TA
     carrouselItems[currentImg].classList.add("display-none")
     carrouselItems[currentImg].setAttribute("aria-hidden", "false")
-
+    
     //maj du numéro de l'image courante
     currentImg = nextImg
 
-    focusClose()
-
-}
-
-var focusClose = () => {
-    //prise de focus par le bouton de fermeture
-    const carrouselItems = document.querySelectorAll(".carrousel-item")
-    let currentCarrousel = carrouselItems[currentImg]
-    const carrouselButton = currentCarrousel.querySelector('.carrousel-close-button')
-    carrouselButton.focus()
+    const articleCarrousel = document.getElementsByTagName("article")[currentImg]
+    articleCarrousel.focus()
 }
 
 /**
  * Fermeture du carrousel
  */
 var closeCarrousel = () => {
-
-    console.log("close");
 
     //suppression du contenu du carrousel dans le DOM
     carrousel.innerHTML = ""
@@ -161,6 +152,7 @@ var closeCarrousel = () => {
 }
 
 
+
 //Gestion des interactions au clavier
 document.addEventListener('keydown', e => {
     const carrouselContainer = document.getElementById('carrousel-container')
@@ -172,16 +164,16 @@ document.addEventListener('keydown', e => {
             case "Escape":
                 closeCarrousel()
                 break;
-            //flèche droite : image suivante
+                //flèche droite : image suivante
             case "ArrowRight":
                 changeCarrousel("next")
                 break;
-            //flèche gauche : image précédente
-            case "ArrowLeft":
-                changeCarrousel("prev")
+                //flèche gauche : image précédente
+                case "ArrowLeft":
+                    changeCarrousel("prev")
                 break;
             default:
                 break;
-        }
+            }
     }
 })
