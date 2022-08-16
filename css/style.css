@@ -38,8 +38,8 @@ header {
   height: 50px;
 }
 
-a {
-  text-decoration: none;
+a:focus {
+  border: 1px solid black;
 }
 
 .sr-only {
@@ -239,9 +239,10 @@ a {
   color: black;
   margin: 0px;
 }
-#modal-container #modal .modal-body {
+#modal-container #modal #modal-body {
   padding: 15px 8%;
   margin: 15px auto;
+  position: relative;
 }
 
 #modal-button {
@@ -310,6 +311,14 @@ form .text-control {
   opacity: 0;
 }
 
+.message {
+  font-size: 1.3em;
+  color: yellow;
+  position: absolute;
+  height: 75px;
+  width: 80%;
+}
+
 @media screen and (max-width: 768px) {
   #modal-container #modal {
     gap: 0px;
@@ -362,6 +371,10 @@ form .text-control {
   form label, form .text-control {
     font-size: 15px;
   }
+  .message {
+    top: -20px;
+    font-size: 1.1em;
+  }
 }
 #carrousel {
   position: fixed;
@@ -403,7 +416,8 @@ form .text-control {
   background-color: transparent;
   cursor: pointer;
 }
-.carrousel-close-button svg path {
+
+svg path {
   fill: #901C1C;
 }
 
@@ -429,7 +443,7 @@ form .text-control {
 .controls-right {
   position: absolute;
   top: 45%;
-  right: -60px;
+  right: -80px;
   transform: translate(-50%, -50%);
 }
 
@@ -628,6 +642,7 @@ header > h1 {
 }
 #portfolio article .photo-infos a {
   color: #901C1C;
+  text-decoration: none;
 }
 #portfolio article .photo-infos .noClicable {
   color: #D3573C;

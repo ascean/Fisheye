@@ -18,15 +18,17 @@ const formContact = document.forms['formContact']; //formulaire
 const first = formContact[0];   //prénom
 const last = formContact[1];   //nom
 const email = formContact[2];   //email
-const message = formContact[3];   //date de naissance
+const message = formContact[3];   //message
 const formDatas = document.querySelectorAll(".formData");   //éléments de la modale
 const textError = document.querySelectorAll(".textError")
 
 //class Object : nom du champ + contenu
 class FormData {
-    constructor(fieldName, fieldContent) {
+    constructor(fieldName, fieldCode, fieldContent,fieldTxtError) {
         this.fieldName = fieldName;
+        this.fieldCode = fieldCode;
         this.fieldContent = fieldContent;
+        this.fieldTxtError = fieldTxtError;
     }
 }
 
@@ -72,10 +74,10 @@ var initErrors = () => {
 var initCheckList = () => {
 
     checkList = [
-        new FormData("first", ""), 		//élément 0
-        new FormData("last", ""),		//élément 1
-        new FormData("email", ""),		//élément 2
-        new FormData("message", "")	    //élément 3
+        new FormData("Prénom","first", "",""), 		//élément 0
+        new FormData("Nom","last", "",""),		//élément 1
+        new FormData("Email","email", "",""),		//élément 2
+        new FormData("Message","message", "",""),	    //élément 3
     ];
 
 }
@@ -88,7 +90,7 @@ var initCheckList = () => {
 var displayErrorField = () => {
 
     let fieldError = false;
-
+    
     for (let i = 0; i < 4; i++) {
         const element = checkList[i];
         let ariaVisibility;
@@ -98,15 +100,17 @@ var displayErrorField = () => {
             fieldError = true
             ariaVisibility = true;
             opacity = 1;
+            element.fieldTxtError = textError[i].innerText
         } else {
             ariaVisibility = false;
             opacity = 0;
+            element.fieldTxtError = ""
         }
-
+        
         textError[i].setAttribute("aria-hidden", ariaVisibility);
         textError[i].style.opacity = opacity;
-
     }
+
     return fieldError;
 }
 
@@ -199,7 +203,7 @@ var listenerFunction = {
  */
 //eslint-disable-next-line no-unused-vars
 var displayModal = (name) => {
-    console.log("ok ");
+
     initErrors()
     //affichage de la modale
     modalContainer.style.display = "flex";
@@ -239,6 +243,8 @@ var closeModal = () => {
     document.getElementById('contact-button').focus() 
 }
 
+
+
 /**
  * Validation du formulaire
  * @param {object} event 
@@ -250,7 +256,6 @@ var validModal = (event) => {
 
     //contrôle des saisies
     if (!displayErrorField()) {
-
 
         //sélection des éléments du DOM
         const FIELDS = document.querySelectorAll(".text-control")
@@ -269,7 +274,9 @@ var validModal = (event) => {
         //log pour contrôle saisie
         console.log(saisieUser);
 
+        //fermeture de la modale
         closeModal()
+    
     }
 }
 

@@ -81,9 +81,15 @@ var displayCarrousel = (idMedia) => {
     MAIN.setAttribute('aria-hidden', 'true')
     // eslint-disable-next-line no-undef
     BODY.classList.add('no-scroll')
-      
-    const articleCarrousel = document.getElementsByTagName("article")[currentImg]
-    articleCarrousel.focus()
+    const portfolio = document.getElementById("portfolio");
+    portfolio.setAttribute('aria-hidden','true')
+    
+
+    const closeCarrousel = document.querySelectorAll(".controls-right")[currentImg]
+    closeCarrousel.focus()
+
+    
+
 }
 
 /**
@@ -129,8 +135,8 @@ var changeCarrousel = (direction) => {
     //maj du numéro de l'image courante
     currentImg = nextImg
 
-    const articleCarrousel = document.getElementsByTagName("article")[currentImg]
-    articleCarrousel.focus()
+    const closeCarrousel = document.querySelectorAll(".controls-right")[currentImg]
+    closeCarrousel.focus()
 }
 
 /**
@@ -147,18 +153,20 @@ var closeCarrousel = () => {
     // eslint-disable-next-line no-undef
     BODY.classList.remove('no-scroll')
 
+    const portfolio = document.getElementById("portfolio");
+    portfolio.setAttribute('aria-hidden','false')
+
     //récup du focus par le bouton Contactez-moi
     document.getElementById('contact-button').focus()
 }
 
 
-
 //Gestion des interactions au clavier
 document.addEventListener('keydown', e => {
     const carrouselContainer = document.getElementById('carrousel-container')
-
     //on interagit uniquement si le carrousel est affiché
     if (carrouselContainer && carrouselContainer.style.display == "flex") {
+
         switch (e.key) {
             //ESC -> fermeture du carrousel
             case "Escape":
@@ -177,3 +185,4 @@ document.addEventListener('keydown', e => {
             }
     }
 })
+

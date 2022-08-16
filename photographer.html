@@ -56,28 +56,38 @@
                             <img src="assets/icons/close.svg" alt=""/>
                         </button>
                     </header>
-                    <div class="modal-body">
-                        
+
+                    
+                    <div id="modal-body">
+                                               
                         <form id="formContact">
                             <div class="formData">
                                 <label for="first" id="labelFirst">Prénom</label>
-                                <input class="text-control" type="text" id="first" name="first" minlength="2" placeholder="Veuillez saisir votre prénom" aria-labelledby="labelFirst" aria-required="true" />
-                                <p class="textError" aria-hidden="true"></p>
+                                <input class="text-control" type="text" id="first" name="first" minlength="2" 
+                                    placeholder="Veuillez saisir votre prénom" aria-labelledby="labelFirst" 
+                                    aria-required="true" aria-describedby="firstError"/>
+                                <p id = "firstError" class="textError" aria-hidden="true"></p>
                             </div>
                             <div class="formData">
                                 <label for="last" id="labelLast">Nom</label>
-                                <input class="text-control" type="text" id="last" name="last" minlength="2" placeholder="Veuillez saisir votre nom" aria-labelledby="labelLast" aria-required="true"/>
-                                <p class="textError" aria-hidden="true"></p>
+                                <input class="text-control" type="text" id="last" name="last" minlength="2" 
+                                    placeholder="Veuillez saisir votre nom" aria-labelledby="labelLast" 
+                                    aria-required="true" aria-describedby="lastError"/>
+                                <p id="lastError" class="textError" aria-hidden="true"></p>
                             </div>
                             <div class="formData">
                                 <label for="email" id="labelEmail">E-mail</label>
-                                <input class="text-control" type="email" id="email" name="email" placeholder="Veuillez saisir votre adresse mail" aria-labelledby="labelEmail" aria-required="true"/>
-                                <p class="textError" aria-hidden="true"></p>
+                                <input class="text-control" type="email" id="email" name="email" 
+                                placeholder="Veuillez saisir votre adresse mail" aria-labelledby="labelEmail" 
+                                aria-required="true" aria-describedby="emailError"/>
+                                <p id="emailError" class="textError" aria-hidden="true"></p>
                             </div>
                             <div class="formData">
                                 <label for="message" id="labelMessage">Votre message</label>
-                                <textarea class="text-control" id="message" name="message" rows="5" placeholder="Veuillez saisir votre message" aria-labelledby="labelMessage" aria-required="true"></textarea>
-                                <p class="textError" aria-hidden="true"></p>
+                                <textarea class="text-control" id="message" name="message" rows="5" 
+                                placeholder="Veuillez saisir votre message" aria-labelledby="labelMessage" 
+                                aria-required="true" aria-describedby="messageError"></textarea>
+                                <p id="messageError" class="textError" aria-hidden="true"></p>
                             </div>
                             <button id="modal-button">Envoyer</button>
                         </form>
@@ -85,7 +95,7 @@
                 </div>
             </div>
 
-            <section id="carrousel" class="carousel" aria-roledescription="carousel" aria-label="Images et vidéos du photographe">
+            <section id="carrousel" class="carrousel" aria-roledescription="carousel" aria-label="Images et vidéos du photographe">
                 
                 
             </section>

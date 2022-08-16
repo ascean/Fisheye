@@ -76,6 +76,8 @@ var mediaFactory = (data) => {
             //création de la balise article
             article = document.createElement('li')
             article.setAttribute("id", `item-${imageNumber}`)
+            article.setAttribute("role", "group")
+            article.setAttribute("aria-roledescription","slide")
             article.classList.add("carrousel-item")
             //images autres que la 1ère invisible
             if (imageNumber > 0) {
@@ -98,9 +100,8 @@ var mediaFactory = (data) => {
                 picture =
                     `
                         <div role="button" aria-label = ${altParam} tabindex="-1">
-                        <video controls controlslist="nofullscreen">
-                            <source src = ./assets/images/${photographerId}/${video} type="video/mp4" alt=${altParam} 
-                                class="carrousel-img">
+                        <video controls controlslist="nofullscreen" class="carrousel-img" tabindex="0">
+                            <source src = ./assets/images/${photographerId}/${video} type="video/mp4" alt=${altParam}>
                         </video>
                         </div>
                     `
@@ -112,18 +113,23 @@ var mediaFactory = (data) => {
                         <path d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z" fill="white"/>
                     </svg>
                 </button>
-                <div onclick=changeCarrousel("prev") role="button" class="controls controls-left" aria-label="Média précédent" tabindex="0">
-                    <i onclick=changeCarrousel("prev") class="fa fa-chevron-left" tabindex="-1" aria-label="Média précédent"></i>
-                </div>
+                
+                <a href="#" type="button" role="button" class="controls controls-left" aria-label="Média précédent" onclick=changeCarrousel("prev")>
+                    <svg width="42" height="42" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                        <path d="M224 480c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25l192-192c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l169.4 169.4c12.5 12.5 12.5 32.75 0 45.25C240.4 476.9 232.2 480 224 480z"/>
+                    </svg>
+                </a>
                 
                 <article>
                 ${picture}
                 <h2 class="photo-title">${title}</h2>
                 </article>
                 
-                <div onclick=changeCarrousel("next") role="button" class="controls controls-right" aria-label="Média suivant" tabindex="0">
-                    <i onclick=changeCarrousel("next") class="fa fa-chevron-right" tabindex="-1" aria-label="Média suivant"></i>
-                </div>
+                <a href="#" class="controls controls-right" aria-label="Média suivant" onclick=changeCarrousel("next")>
+                    <svg width="42" height="42" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                        <path d="M96 480c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L242.8 256L73.38 86.63c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l192 192c12.5 12.5 12.5 32.75 0 45.25l-192 192C112.4 476.9 104.2 480 96 480z"/>
+                    </svg>
+                </a>
                 `
             imageNumber = imageNumber + 1
 
