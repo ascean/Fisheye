@@ -74,11 +74,13 @@ a:focus {
   cursor: pointer;
   text-decoration: none;
   color: white;
+  border: transparent;
 }
 #navbar-container a:focus-visible, #navbar-container a:hover {
   outline: none;
   font-size: 1.2em;
   font-weight: bold;
+  border: none;
 }
 
 #navbar {
@@ -433,6 +435,7 @@ svg path {
   color: #901C1C;
   border: none;
   background: none;
+  cursor: pointer;
 }
 .controls-left {
   position: absolute;
@@ -649,6 +652,7 @@ header > h1 {
 }
 #portfolio article .photo-title {
   font-size: 24px;
+  font-weight: normal;
   margin: 0;
 }
 

@@ -63,18 +63,15 @@ var selectOrderBy = (id) => {
     const orderDOM = 
         ` <ul id="navbar" role="menubar" aria-label="Tri par ${Object.values(tabOrder[0])}">
             <li id="${Object.keys(tabOrder[0])}">
-                <a href="#menu-link1" id="menu-link1" class="menu-link" 
-                    onclick="selectOrderBy('${Object.keys(tabOrder[0])[0].substring(7, 8)}')" 
+                <a href="#" id="menu-link1" class="menu-link" 
                     role="menuitem" tabindex="0" aria-labelleby="navbar">${Object.values(tabOrder[0])}</a>
                 <ul id="ssnavbar" role="menu" aria-label="Autres tris">
                     <li id="${Object.keys(tabOrder[1])}">
-                        <a href="#menu-link2" id="menu-link2" class="menu-link" 
-                        onclick="selectOrderBy('${Object.keys(tabOrder[1])[0].substring(7, 8)}')" 
+                        <a href="#" id="menu-link2" class="menu-link" 
                         role="menuitem" aria-haspopup="false" tabindex="0">${Object.values(tabOrder[1])}</a>
                     </li>
                     <li id="${Object.keys(tabOrder[2])}">
-                        <a href="#menu-link3" id="menu-link3" class="menu-link" 
-                        onclick="selectOrderBy('${Object.keys(tabOrder[2])[0].substring(7, 8)}')" 
+                        <a href="#" id="menu-link3" class="menu-link" 
                         role="menuitem" aria-haspopup="false" tabindex="0">${Object.values(tabOrder[2])}</a>
                     </li>
                 </ul>
@@ -90,6 +87,15 @@ var selectOrderBy = (id) => {
     // eslint-disable-next-line no-undef
     displayPortfolio(photographersArray[idPhotographer][1])
 
+    const menuLinks = document.querySelectorAll(".menu-link")
+    for (let i = 0; i < menuLinks.length; i++) {
+        const menuLink = menuLinks[i];
+        menuLink.addEventListener("click", () => {
+            const idOrderby = menuLink.parentNode.id
+            selectOrderBy(idOrderby.substring(7))
+        })
+
+    }
 
     //récup du focus par le bouton Contactez-moi
     const mediaPortfolio = document.querySelectorAll(".media-portfolio")
@@ -99,14 +105,14 @@ var selectOrderBy = (id) => {
 
 
 //*************************************GESTION DES LISTENERS*************************************
-var setupListenersFunctions = () => {
+var setupListenersOrderby = () => {
 
+    //écoutede la prise de focus
     window.addEventListener('focus', function (e) {
         
         let idFocus  = e.target.id
 
-        //test du champ qui a le focus
-        //ouverture du menu s'il a le focus
+        //test du champ qui a le focus => ouverture du menu s'il a le focus
         if ((idFocus === "menu-link1") || (idFocus === "menu-link2") || (idFocus === "menu-link3")) {
             let ssnavbar =      document.getElementById("ssnavbar")
             if (ssnavbar.style.display != "block") {
@@ -116,13 +122,23 @@ var setupListenersFunctions = () => {
             let ssnavbar = document.getElementById("ssnavbar")
                 if (ssnavbar.style.display === "block") {
                     ssnavbar.style.display = "none"
-                }
-             
+                }    
         }
 
     }, true);
 
+    //écoute du clic sur le menu de tri => lancement de selectOrderby
+    const menuLinks = document.querySelectorAll(".menu-link")
+    for (let i = 0; i < menuLinks.length; i++) {
+        const menuLink = menuLinks[i];
+        menuLink.addEventListener("click", () => {
+            const idOrderby = menuLink.parentNode.id
+            selectOrderBy(idOrderby.substring(7))
+        })
+
+    }
+
 }
 
 //Lancement des listeners
-setupListenersFunctions()
+setupListenersOrderby()

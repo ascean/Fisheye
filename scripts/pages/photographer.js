@@ -81,7 +81,7 @@ var displayPortfolio = async (medias) => {
     
     //on traite les médias du photographe concerné
     medias.forEach((media) => {
-
+        
         //incrémentation du total de likes à partir du nb de likes de chaque média
         totalLikes = totalLikes + media.likes
         //recup tarif photographe
@@ -114,7 +114,7 @@ var displayPortfolio = async (medias) => {
         portfolioContainer.appendChild(bottomLikes);
     }
 
-    
+    setupListenersPortfolio()
 };
 
 
@@ -200,6 +200,40 @@ var addLike = (idMedia) => {
             }
             
         }
+    }
+}
+
+var setupListenersPortfolio = () => {
+
+    //écoute du clic sur les médias du portfolio => lance la carrousel ) partir du média sélectionné
+    const mediasPortfolio = document.querySelectorAll(".media-portfolio");
+    for (let i = 0; i < mediasPortfolio.length; i++) {
+        const mediaPortfolio = mediasPortfolio[i]
+        mediaPortfolio.addEventListener("click", () => {
+            displayCarrousel(mediaPortfolio.parentNode.id)
+        })   
+    }
+
+    //écoute du clic sur les coeurs : +1
+    const likes = document.querySelectorAll(".likes")
+    for (let i = 0; i < likes.length; i++) {
+        const like = likes[i];
+        let idlike = like.id.substring(4)
+        like.addEventListener("click", () => {
+            addLike(idlike)
+        })        
+    }
+
+    
+
+    // Clic sur le bouton contact -> on ouvre la modale
+    const contactButton = document.getElementById("contact-button")
+    if (contactButton) {
+        contactButton.addEventListener("click", () => {
+            const infos = document.querySelector(".photograph-infos")
+            const name = infos.getElementsByTagName("h1")[0].innerText
+            displayModal(name)
+        })
     }
 }
 

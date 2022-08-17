@@ -18,13 +18,11 @@ var displayMedia = (idMedia) => {
         //média sélectionné depuis le portofolio : affiché dans le carrousel + gestion TA
         if (portfolioItems[i].id == idMedia) {
             carrouselItems[i].classList.remove("display-none")
-            //carrouselItems[i].setAttribute("aria-hidden", "true")
             currentImg = i
 
             //tous les autres médias : masqués dans le carrousel + gestion TA
         } else {
             carrouselItems[i].classList.add("display-none")
-            //carrouselItems[i].setAttribute("aria-hidden", "false")
         }
     }
 
@@ -51,8 +49,7 @@ var displayCarrousel = (idMedia) => {
     //création de l'élément carrousel-container
     const carrouselItems = document.createElement("div")
     carrouselItems.setAttribute("id", "carrousel-items")
-    //ajout du nom du photographe dans aria-label du carrousel
-    //carrouselItems.setAttribute("aria-label", `Images et vidéos de ${name}`)
+
     //ajout des éléments au DOM
     carrouselContainer.appendChild(carrouselItems)
 
@@ -74,22 +71,27 @@ var displayCarrousel = (idMedia) => {
     //affichage du média sélectionné dans le portfolio (idMedia)
     displayMedia(idMedia)
     
-    //affichage du carrousel (pleine page) + gestion TA
+    //affichage du carrousel (pleine page)
     carrouselContainer.style.display = "flex";
     carrouselContainer.style.height = "100vh";
     carrouselContainer.style.width = "100vw";
     
-    //on masque le reste de la page pour les TA et on empêche le scroll
+    //on empêche le scroll
     // eslint-disable-next-line no-undef
     BODY.classList.add('no-scroll')
 
+    //sections non lisibles par les TA
     const photographHeader = document.getElementById("photograph-header");
-    photographHeader.setAttribute('aria-hidden','true')
+    if (photographHeader) photographHeader.setAttribute('aria-hidden','true')
     const portfolioContainer = document.getElementById("portfolio-container");
-    portfolioContainer.setAttribute('aria-hidden','true')
+    if (portfolioContainer) portfolioContainer.setAttribute('aria-hidden','true')
 
+    //appel des fonctions d'écoute du clic sur les boutons du carrousel
+    setupListenersCarrousel()
+
+    //prise de focus -> image
     const carrouselImg = document.querySelectorAll(".carrousel-img")[currentImg]
-    carrouselImg.focus()
+    if (carrouselImg) carrouselImg.focus()
     
 }
 
@@ -153,10 +155,11 @@ var closeCarrousel = () => {
     // eslint-disable-next-line no-undef
     BODY.classList.remove('no-scroll')
 
+    //sections non lisibles par les TA
     const photographHeader = document.getElementById("photograph-header");
-    photographHeader.setAttribute('aria-hidden','false')
+    if (photographHeader) photographHeader.setAttribute('aria-hidden','true')
     const portfolioContainer = document.getElementById("portfolio-container");
-    portfolioContainer.setAttribute('aria-hidden','false')
+    if (portfolioContainer) portfolioContainer.setAttribute('aria-hidden','true')
 
     //récup du focus par le bouton Contactez-moi
     document.getElementById('contact-button').focus()
@@ -188,3 +191,25 @@ document.addEventListener('keydown', e => {
     }
 })
 
+//écoute du clic sur les boutons du carrousel
+var setupListenersCarrousel = () => {
+
+    const torightButtons = document.querySelectorAll(".controls-right")
+    for (let i = 0; i < torightButtons.length; i++) {
+        torightButtons[i].addEventListener("click", () => {
+            changeCarrousel("next")
+        })
+    }
+    const toleftButtons = document.querySelectorAll(".controls-left")
+    for (let i = 0; i < toleftButtons.length; i++) {
+        toleftButtons[i].addEventListener("click", () => {
+            changeCarrousel("prev")
+        })
+    }
+    const closeButtons = document.querySelectorAll(".carrousel-close-button")
+    for (let i = 0; i < closeButtons.length; i++) {
+        closeButtons[i].addEventListener("click", () => {
+            closeCarrousel()
+        })
+    }
+}

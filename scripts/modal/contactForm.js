@@ -1,6 +1,6 @@
 /**********************************GESTION DE LA MODALE DE CONTACT ******************************************** */
 window.onload = () => {
-    setupListeners()
+    setupListenersContact()
 }
 
 const BODY = document.getElementById('body')
@@ -283,22 +283,32 @@ var validModal = (event) => {
 /**
  * Liste des abonnements
  */
-var setupListeners = () => {
+var setupListenersContact = () => {
 
     first.addEventListener("input", listenerFunction.checkText);
     last.addEventListener("input", listenerFunction.checkText);
     email.addEventListener("input", listenerFunction.checkEmail);
     message.addEventListener("input", listenerFunction.checkText);
-    modalButton.addEventListener("click", validModal);
+    modalButton.addEventListener("click", () => {
+        validModal()
+    });
 
-}
+    
+    // Touche ESC pressée -> on ferme la modale
+    document.addEventListener('keydown', e => {
+        if (modalContainer.getAttribute('aria-hidden') == 'true' && e.key === "Escape") {
+            closeModal()
+        }
+    })
 
-// Touche ESC pressée -> on ferme la modale
-document.addEventListener('keydown', e => {
-    if (modalContainer.getAttribute('aria-hidden') == 'true' && e.key === "Escape") {
-        closeModal()
+    // Touche ESC pressée -> on ferme la modale
+    const modalCloseButton = document.getElementById("modal-close-button")
+    if (modalCloseButton) {
+        modalCloseButton.addEventListener("click", () => {
+            closeModal()
+        })
     }
-})
+}
 
 //initialisation des champs de saisie du formulaire
 initFields()
