@@ -33,8 +33,6 @@ var orderbyArray = (type) => {
 
 }
 
-
-
 /**
  * prise en compte du critère de tri dans l'affichage des médias : tri du tableau photographersArray
  * est appelé sur clic des différentes options du menu navbar
@@ -60,6 +58,8 @@ var selectOrderBy = (id) => {
     }
 
     //màj du DOM du menu de tri : navbarcontainer
+    //ex : id = ${Object.keys(tabOrder[0])} => id = orderby1
+    //          ${Object.values(tabOrder[0])} => Popularité
     const orderDOM = 
         ` <ul id="navbar" role="menubar" aria-label="Tri par ${Object.values(tabOrder[0])}">
             <li id="${Object.keys(tabOrder[0])}">
@@ -102,8 +102,11 @@ var selectOrderBy = (id) => {
 var setupListenersFunctions = () => {
 
     window.addEventListener('focus', function (e) {
+        
+        let idFocus  = e.target.id
+
+        //test du champ qui a le focus
         //ouverture du menu s'il a le focus
-let idFocus  = e.target.id
         if ((idFocus === "menu-link1") || (idFocus === "menu-link2") || (idFocus === "menu-link3")) {
             let ssnavbar =      document.getElementById("ssnavbar")
             if (ssnavbar.style.display != "block") {
@@ -116,13 +119,6 @@ let idFocus  = e.target.id
                 }
              
         }
-        //fermeture du menu de tri quand le focus est sur un autre élément
-        // if (e.target.role != "menuitem") {
-        //     let ssnavbar = document.getElementById("ssnavbar")
-        //     if (ssnavbar.style.display === "block") {
-        //         ssnavbar.style.display = "none"
-        //     }
-        // }
 
     }, true);
 

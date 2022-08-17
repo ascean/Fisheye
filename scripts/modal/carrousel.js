@@ -2,7 +2,7 @@
 let nbImages = 0 //nombre d'images contenues dans le portfolio
 let currentImg = 0  //numéro de l'image actuelle affichée dans le carrousel
 
-const carrousel = document.getElementById("carrousel");
+const carrouselContainer = document.getElementById("carrousel-container");
 
 /**
  * Affichage du média sélectionné, masquage des autres / gestion TA avec aria-hidden
@@ -18,13 +18,13 @@ var displayMedia = (idMedia) => {
         //média sélectionné depuis le portofolio : affiché dans le carrousel + gestion TA
         if (portfolioItems[i].id == idMedia) {
             carrouselItems[i].classList.remove("display-none")
-            carrouselItems[i].setAttribute("aria-hidden", "true")
+            //carrouselItems[i].setAttribute("aria-hidden", "true")
             currentImg = i
 
             //tous les autres médias : masqués dans le carrousel + gestion TA
         } else {
             carrouselItems[i].classList.add("display-none")
-            carrouselItems[i].setAttribute("aria-hidden", "false")
+            //carrouselItems[i].setAttribute("aria-hidden", "false")
         }
     }
 
@@ -40,18 +40,22 @@ var displayCarrousel = (idMedia) => {
     //tableau contenant les données du photographe ([0]) et de ses médias ([1])
     // eslint-disable-next-line no-undef
     let mediasPhotographer = photographersArray[idPhotographer]
-
-    carrousel.innerHTML = `<h2 id="h2carrousel" class="sr-only" aria-hidden="true">Carrousel</h2>`
+        
+    let h2Name = document.createElement('h2')
+    let name = mediasPhotographer[0].name
+    h2Name.innerText = `Images et vidéos de ${name}`
+    h2Name.classList.add("sr-only")
+    h2Name.setAttribute("aria-hidden","false")
+    carrouselContainer.appendChild(h2Name)
 
     //création de l'élément carrousel-container
-    const carrouselContainer = document.createElement("ul")
-    carrouselContainer.setAttribute("id", "carrousel-container")
-    carrouselContainer.setAttribute("role", "list-box")
+    const carrouselItems = document.createElement("div")
+    carrouselItems.setAttribute("id", "carrousel-items")
     //ajout du nom du photographe dans aria-label du carrousel
-    let name = mediasPhotographer[0].name
-    carrouselContainer.setAttribute("aria-label", `Images et vidéos de ${name}`)
+    //carrouselItems.setAttribute("aria-label", `Images et vidéos de ${name}`)
     //ajout des éléments au DOM
-    carrousel.appendChild(carrouselContainer)
+    carrouselContainer.appendChild(carrouselItems)
+
 
     //on traite les médias du photographe concerné
     mediasPhotographer[1].forEach((media) => {
@@ -64,7 +68,7 @@ var displayCarrousel = (idMedia) => {
         const carrouselDOM = mediaModel.getMediaCardDOM("carrousel")
 
         //Ajout au DOM
-        carrouselContainer.appendChild(carrouselDOM)
+        carrouselItems.appendChild(carrouselDOM)
     });
 
     //affichage du média sélectionné dans le portfolio (idMedia)
@@ -74,22 +78,19 @@ var displayCarrousel = (idMedia) => {
     carrouselContainer.style.display = "flex";
     carrouselContainer.style.height = "100vh";
     carrouselContainer.style.width = "100vw";
-    carrouselContainer.setAttribute('aria-hidden', 'false')
     
     //on masque le reste de la page pour les TA et on empêche le scroll
     // eslint-disable-next-line no-undef
-    MAIN.setAttribute('aria-hidden', 'true')
-    // eslint-disable-next-line no-undef
     BODY.classList.add('no-scroll')
-    const portfolio = document.getElementById("portfolio");
-    portfolio.setAttribute('aria-hidden','true')
+
+    const photographHeader = document.getElementById("photograph-header");
+    photographHeader.setAttribute('aria-hidden','true')
+    const portfolioContainer = document.getElementById("portfolio-container");
+    portfolioContainer.setAttribute('aria-hidden','true')
+
+    const carrouselImg = document.querySelectorAll(".carrousel-img")[currentImg]
+    carrouselImg.focus()
     
-
-    const closeCarrousel = document.querySelectorAll(".controls-right")[currentImg]
-    closeCarrousel.focus()
-
-    
-
 }
 
 /**
@@ -126,17 +127,17 @@ var changeCarrousel = (direction) => {
     
     //on affiche l'image nextImg + TA
     carrouselItems[nextImg].classList.remove("display-none")
-    carrouselItems[nextImg].setAttribute("aria-hidden", "true")
+    carrouselItems[nextImg].setAttribute("aria-hidden", "false")
 
     //on cache l'image courante currentImg + TA
     carrouselItems[currentImg].classList.add("display-none")
-    carrouselItems[currentImg].setAttribute("aria-hidden", "false")
+    carrouselItems[currentImg].setAttribute("aria-hidden", "true")
     
     //maj du numéro de l'image courante
     currentImg = nextImg
 
-    const closeCarrousel = document.querySelectorAll(".controls-right")[currentImg]
-    closeCarrousel.focus()
+    const carrouselImg = document.querySelectorAll(".carrousel-img")[currentImg]
+    carrouselImg.focus()
 }
 
 /**
@@ -145,16 +146,17 @@ var changeCarrousel = (direction) => {
 var closeCarrousel = () => {
 
     //suppression du contenu du carrousel dans le DOM
-    carrousel.innerHTML = ""
+    carrouselContainer.innerHTML = ""
+    carrouselContainer.style.display="none"
 
-    //réaffichage de MAIN pour les TA + scroll
-    // eslint-disable-next-line no-undef
-    MAIN.setAttribute('aria-hidden', 'false')
+    //réaffichage des sections pour les TA + scroll BODY
     // eslint-disable-next-line no-undef
     BODY.classList.remove('no-scroll')
 
-    const portfolio = document.getElementById("portfolio");
-    portfolio.setAttribute('aria-hidden','false')
+    const photographHeader = document.getElementById("photograph-header");
+    photographHeader.setAttribute('aria-hidden','false')
+    const portfolioContainer = document.getElementById("portfolio-container");
+    portfolioContainer.setAttribute('aria-hidden','false')
 
     //récup du focus par le bouton Contactez-moi
     document.getElementById('contact-button').focus()

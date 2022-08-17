@@ -105,10 +105,10 @@ var displayPortfolio = async (medias) => {
         bottomLikes.setAttribute('id', "bottom-likes")
         bottomLikes.innerHTML =
             `<div class="likes">
-                <p id="likes-number" aria-label="Nombre total de likes" tabindex="0">${totalLikes}</p>
+                <p id="likes-number" aria-label="Nombre total de likes ${totalLikes}" tabindex="0">${totalLikes}</p>
                 <span class="fa fa-heart" aria-hidden="true"></span>
             </div>
-            <div class="price"aria-label="Prix" tabindex="0">${price}€ / jour</div>`
+            <div class="price" aria-label="Prix par jour ${price}€" tabindex="0">${price}€ / jour</div>`
         
         //Ajout au DOM
         portfolioContainer.appendChild(bottomLikes);

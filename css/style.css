@@ -376,7 +376,7 @@ form .text-control {
     font-size: 1.1em;
   }
 }
-#carrousel {
+#carrousel-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -388,25 +388,25 @@ form .text-control {
   height: auto;
   min-height: 100%;
 }
-#carrousel ul#carrousel-container {
+#carrousel-container #carrousel-items {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0;
   padding: 0;
   position: relative;
-  display: none;
+  height: 100vh;
+  width: 100vw;
 }
-#carrousel ul#carrousel-container .carrousel-img {
-  max-width: 80vw;
-  max-height: 80vh;
-}
-#carrousel ul#carrousel-container li.carrousel-item {
-  list-style-type: none;
-}
-#carrousel ul#carrousel-container li.carrousel-item article .photo-title {
+
+article .photo-title {
   color: #901C1C;
   font-size: 24px;
+}
+
+.carrousel-img {
+  max-width: 80vw;
+  max-height: 80vh;
 }
 
 .carrousel-close-button {
