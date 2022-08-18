@@ -135,8 +135,8 @@ var init = async () => {
         let arrayMedias = []
         datas.medias.forEach((dataMedia) => {
             if (dataMedia.photographerId == dataPhotographer.id) {
-                var clicable = {clicable: "true"};
-                dataMedia = {...dataMedia, ...clicable};
+                var likeStatus = {likeStatus: "allowed"};
+                dataMedia = {...dataMedia, ...likeStatus};
                 arrayMedias.push(dataMedia)
             }
         })
@@ -179,21 +179,25 @@ var addLike = (idMedia) => {
         for (let i = 0; i < mediasPhotographers.length; i++) {
 
             //on recheche le média cliqué dans l'ensemble des médias + on vérifie qu'il est clicable
-            if (idMedia == mediasPhotographers[i].id && mediasPhotographers[i].clicable === "true") {
+            if (idMedia == mediasPhotographers[i].id && mediasPhotographers[i].likeStatus === "allowed") {
                 
                 //méj du nombre de likes
                 mediasPhotographers[i].likes = mediasPhotographers[i].likes +1;
-                //màj du champ "clicable" -> false
-                mediasPhotographers[i].clicable = "noClicable";  
+                //màj du champ "clicable" -> false (indispensable en cas de réaffichage suite à tri)
+                mediasPhotographers[i].likeStatus = "rejected";  
                 
                 //suppression de l'identifiant sur le média
                 idLike.removeAttribute('id');
 
                 //màj du nombre de likes dans le DOM
-                //class noClicable change la couleur du coeur
+                //class likeStatus change la couleur du coeur
                 let nb = parseInt(idLike.innerText) + 1
-                idLike.innerHTML = nb + `<span class="fa fa-heart noClicable"></span>`
                 
+                // màj aria-label pour TA : déjà liké
+                //class rejected : coeur change de couleur si cliqué
+                idLike.innerHTML = `<span aria-label="Déja liké. Nombre de likes ${nb}" tabindex="0">${nb}</span>
+                                        <span class="fa fa-heart rejected"></span>`
+
                 //maj du nombre total de likes pour le photographe
                 const bottomLikes = document.getElementById("likes-number")
                 bottomLikes.innerText = parseInt(bottomLikes.innerText) + 1
@@ -205,11 +209,12 @@ var addLike = (idMedia) => {
 
 var setupListenersPortfolio = () => {
 
-    //écoute du clic sur les médias du portfolio => lance la carrousel ) partir du média sélectionné
+    //écoute du clic sur les médias du portfolio => lance la carrousel à partir du média sélectionné
     const mediasPortfolio = document.querySelectorAll(".media-portfolio");
     for (let i = 0; i < mediasPortfolio.length; i++) {
         const mediaPortfolio = mediasPortfolio[i]
         mediaPortfolio.addEventListener("click", () => {
+            // eslint-disable-next-line no-undef
             displayCarrousel(mediaPortfolio.parentNode.id)
         })   
     }
@@ -224,14 +229,13 @@ var setupListenersPortfolio = () => {
         })        
     }
 
-    
-
     // Clic sur le bouton contact -> on ouvre la modale
     const contactButton = document.getElementById("contact-button")
     if (contactButton) {
         contactButton.addEventListener("click", () => {
             const infos = document.querySelector(".photograph-infos")
             const name = infos.getElementsByTagName("h1")[0].innerText
+            // eslint-disable-next-line no-undef
             displayModal(name)
         })
     }

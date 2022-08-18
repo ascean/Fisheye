@@ -50,16 +50,16 @@ var initErrors = () => {
     for (let i = 0; i < textError.length; i++) {
         switch (i) {
             case 0:
-                textError[i].innerText= "Veuillez entrer au moins 2 caractères alphanumériques.";
+                textError[i].innerText= "Prénom obligatoire : 2 caractères minimum.";
                 break;
             case 1:
-                textError[i].innerText= "Veuillez entrer au moins 2 caractères alphanumériques.";
+                textError[i].innerText= "Nom obligatoire : 2 caractères minimum";
                 break;
             case 2:
-                textError[i].innerText= "Veuillez entrer une adresse mail valide.";
+                textError[i].innerText= "Adresse mail valide obligatoire.";
                 break;
             case 3:
-                textError[i].innerText = "Veuillez saisir votre message.";
+                textError[i].innerText = "Message obligatoire";
                 break;
             default:
                 break;
@@ -98,11 +98,11 @@ var displayErrorField = () => {
 
         if (element.fieldContent == "") {
             fieldError = true
-            ariaVisibility = true;
+            ariaVisibility = false;
             opacity = 1;
             element.fieldTxtError = textError[i].innerText
         } else {
-            ariaVisibility = false;
+            ariaVisibility = true;
             opacity = 0;
             element.fieldTxtError = ""
         }
@@ -207,14 +207,14 @@ var displayModal = (name) => {
     initErrors()
     //affichage de la modale
     modalContainer.style.display = "flex";
-    modalContainer.setAttribute('aria-hidden', 'true')
+    modalContainer.setAttribute('aria-hidden', 'false')
 
     //on masque le reste de la mage pour les TA
-    MAIN.setAttribute('aria-hidden', 'true')
     BODY.classList.add('no-scroll')
 
     //màj du titre de la modale avec le nom du protographe
-    modalTitle.innerHTML = `Contactez-moi<br>` + name
+    modalTitle.innerHTML = `Contactez-moi<br>${name}`
+    modalTitle.setAttribute("aria-label",`Contactez-moi ${name}`)
 
     //prise de focus par le bouton de fermeture
     let modalButton = document.getElementById('modal-close-button')
@@ -233,10 +233,9 @@ var closeModal = () => {
 
     //on masque la modale
     modalContainer.style.display = "none";
-    modalContainer.setAttribute('aria-hidden', 'false')
+    modalContainer.setAttribute('aria-hidden', 'true')
 
     //réaffichage de main pour les TA
-    MAIN.setAttribute('aria-hidden', 'false')
     BODY.classList.remove('no-scroll')
 
     //récup du focus par le bouton Contactez-moi
@@ -246,10 +245,11 @@ var closeModal = () => {
 
 
 /**
- * Validation du formulaire
- * @param {object} event 
+ * validation du formulaire
+ * @param {object} event Bouton submit
+ * @returns quitte la fonction si le formulaire a déjà été validé (message "merci pour votre inscription")
  */
-var validModal = (event) => {
+ var validModal = (event) => {
 
     //on empêche le comportement par défaut du formulaire
     event.preventDefault()
@@ -289,9 +289,7 @@ var setupListenersContact = () => {
     last.addEventListener("input", listenerFunction.checkText);
     email.addEventListener("input", listenerFunction.checkEmail);
     message.addEventListener("input", listenerFunction.checkText);
-    modalButton.addEventListener("click", () => {
-        validModal()
-    });
+    modalButton.addEventListener("click", validModal);
 
     
     // Touche ESC pressée -> on ferme la modale

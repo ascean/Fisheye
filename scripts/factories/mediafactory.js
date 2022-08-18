@@ -1,5 +1,4 @@
 /**********************************GESTION DU DOM MEDIAS******************************************** */
-var mediaLikes = 0;
 var imageNumber = 0
 /**
  * Création du DOM concernant les médias pour alimenter le portfolio et le carrousel
@@ -16,7 +15,7 @@ var mediaFactory = (data) => {
     const image = data.image
     const video = data.video
     const likes = data.likes
-    const noClicable = data.clicable
+    const likeStatus = data.likeStatus
 
     /**
      * construction de l'élément article du DOM
@@ -28,41 +27,45 @@ var mediaFactory = (data) => {
         let article; let picture;
         let altParam = ""
 
-        //DOM pourle portfolio + maj du nombre de likes
+        //DOM pour le portfolio + maj du nombre de likes
         if (type == "portfolio") {
 
             //media = image
             if (image) {
                 //suppression de l'extension
                 altParam = image.split('.')[0]
-                picture =   `<a href="#" role="button" class="media-portfolio">
-                                <img src = ./assets/images/${photographerId}/${image} alt=${altParam} >
-                            </a>`
+                picture=`<a href="#" role="button" class="media-portfolio">
+                            <img src = ./assets/images/${photographerId}/${image} alt=${altParam} >
+                        </a>`
 
             //media = video
             } else {
                 //suppression de l'extension
                 altParam = video.split('.')[0]
-                picture =   `<i class="fa-solid fa-circle-play"></i>
-                            <a href="#" class="media-portfolio">
+                picture = `<i class="fa-solid fa-circle-play"></i>
+                           <a href="#" class="media-portfolio">
                                 <video>
-                                    <source src = ./assets/images/${photographerId}/${video} type="video/mp4" alt=${altParam} >
+                                    <source src = ./assets/images/${photographerId}/${video} 
+                                    type="video/mp4" alt=${altParam} >
                                 </video>
-                            </a> `
+                           </a> `
             }
 
             //création de la balise article
             article = document.createElement('article');
             article.setAttribute("id", `${id}`)
             article.classList.add("portfolio-article")
+            console.log(likeStatus);
             article.innerHTML =`${picture} 
                                 <div class="photo-infos">
                                     <h3 class="photo-title" aria-hidden="true">${title}</h3>
                                     <a href="#like${id}" id=like${id} class="likes" aria-label="likes" tabindex="0">
                                         <span aria-label="Nombre de likes ${likes}" tabindex="0">${likes}</span>
-                                        <span class="fa fa-heart ${noClicable}"></span>
+                                        <span class="fa fa-heart ${likeStatus}"></span>
                                     </a>
                                 </div>`
+
+            console.log(article.innerHTML);
 
         //DOM pour le carrousel
         } else if (type == "carrousel") {
@@ -85,15 +88,17 @@ var mediaFactory = (data) => {
             if (image) {
                 //suppression de l'extension
                 altParam = image.split('.')[0]
-                picture =  ` <img src = ./assets/images/${photographerId}/${image} alt=${altParam}   class="carrousel-img" tabindex="3">`
+                picture =  ` <img src = ./assets/images/${photographerId}/${image} alt=${altParam}   
+                            class="carrousel-img" tabindex="3">`
                 
-                //media = video
+            //media = video
             } else {
                 //suppression de l'extension
                 altParam = video.split('.')[0]
-                picture =   `<video controls controlslist="nofullscreen" class="carrousel-img" tabindex="3">
-                                <source src = ./assets/images/${photographerId}/${video} type="video/mp4" alt=${altParam}>
-                            </video>`
+                picture =`<video controls controlslist="nofullscreen" class="carrousel-img" tabindex="3">
+                            <source src = ./assets/images/${photographerId}/${video} type="video/mp4" 
+                            alt=${altParam}>
+                          </video>`
             }
 
             //création du DOM du carrousel

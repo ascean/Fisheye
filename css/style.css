@@ -242,8 +242,7 @@ a:focus {
   margin: 0px;
 }
 #modal-container #modal #modal-body {
-  padding: 15px 8%;
-  margin: 15px auto;
+  padding: 0px 8%;
   position: relative;
 }
 
@@ -297,25 +296,26 @@ form .text-control {
 }
 
 .formData[data-error-visible=true] .text-control {
-  border: 1px solid yellow;
+  border: 2px solid black;
 }
 
-.formData[data-error-visible=true] .text-control:focus-visible {
-  outline: 1px solid yellow;
+.formData .text-control:focus-visible {
+  outline: 2px solid black;
 }
 
 .textError {
   font-size: 1em;
-  color: yellow;
   display: block;
+  font-weight: bold;
   margin-top: 5px;
   text-align: left;
   opacity: 0;
+  color: black;
 }
 
 .message {
   font-size: 1.3em;
-  color: yellow;
+  font-weight: bold;
   position: absolute;
   height: 75px;
   width: 80%;
@@ -361,7 +361,6 @@ form .text-control {
   }
   .textError {
     font-size: 0.6em;
-    color: yellow;
     display: block;
     margin-top: 5px;
     text-align: left;
@@ -647,7 +646,7 @@ header > h1 {
   color: #901C1C;
   text-decoration: none;
 }
-#portfolio article .photo-infos .noClicable {
+#portfolio article .photo-infos .rejected {
   color: #D3573C;
 }
 #portfolio article .photo-title {
