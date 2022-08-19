@@ -61,17 +61,17 @@ var selectOrderBy = (id) => {
     //ex : id = ${Object.keys(tabOrder[0])} => id = orderby1
     //          ${Object.values(tabOrder[0])} => Popularité
     const orderDOM = 
-        ` <ul id="navbar" role="menubar" aria-label="Tri par ${Object.values(tabOrder[0])}">
+        ` <ul id="navbar" role="menubar">
             <li id="${Object.keys(tabOrder[0])}">
-                <a href="#" id="menu-link1" class="menu-link" 
-                    role="menuitem" tabindex="0" aria-labelleby="navbar">${Object.values(tabOrder[0])}</a>
-                <ul id="ssnavbar" role="menu" aria-label="Autres tris">
+                <a href="#" id="menu-link1" class="menu-link" aria-label="Tri par ${Object.values(tabOrder[0])}" 
+                    role="menuitem" tabindex="0">${Object.values(tabOrder[0])}</a>
+                <ul id="ssnavbar" role="menu">
                     <li id="${Object.keys(tabOrder[1])}">
-                        <a href="#" id="menu-link2" class="menu-link" 
+                        <a href="#" id="menu-link2" class="menu-link" aria-label="Tri par ${Object.values(tabOrder[1])}"
                         role="menuitem" aria-haspopup="false" tabindex="0">${Object.values(tabOrder[1])}</a>
                     </li>
                     <li id="${Object.keys(tabOrder[2])}">
-                        <a href="#" id="menu-link3" class="menu-link" 
+                        <a href="#" id="menu-link3" class="menu-link" aria-label="Tri par ${Object.values(tabOrder[2])}"
                         role="menuitem" aria-haspopup="false" tabindex="0">${Object.values(tabOrder[2])}</a>
                     </li>
                 </ul>

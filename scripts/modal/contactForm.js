@@ -4,7 +4,6 @@ window.onload = () => {
 }
 
 const BODY = document.getElementById('body')
-const MAIN = document.getElementById('main')
 
 const modalContainer = document.getElementById('modal-container')
 const modalTitle = document.getElementById('modal-title')

@@ -146,10 +146,11 @@ var init = async () => {
     //affichage des données photographe
     displayPhotographer(photographersArray[idPhotographer][0])
 
-    //appelé dans orderby.js 
+    //appel dans orderby.js 
+    //prise en compte du critère de tri dans l'affichage des médias
     //tri du tableau photographersArray selon l'ordre par défaut = popularité
     // eslint-disable-next-line no-undef
-    orderbyArray("1")
+    selectOrderBy("1")
 
     //affichage des données médias du photographe concerné dans le portfolio
     displayPortfolio(photographersArray[idPhotographer][1])
@@ -189,14 +190,19 @@ var addLike = (idMedia) => {
                 //suppression de l'identifiant sur le média
                 idLike.removeAttribute('id');
 
+                // màj aria-label pour TA : déjà liké
+                idLike.setAttribute("aria-label","Média déja liké")
+
                 //màj du nombre de likes dans le DOM
                 //class likeStatus change la couleur du coeur
                 let nb = parseInt(idLike.innerText) + 1
                 
-                // màj aria-label pour TA : déjà liké
                 //class rejected : coeur change de couleur si cliqué
-                idLike.innerHTML = `<span aria-label="Déja liké. Nombre de likes ${nb}" tabindex="0">${nb}</span>
-                                        <span class="fa fa-heart rejected"></span>`
+                idLike.innerHTML = 
+                    `<span 
+                        aria-label="Nombre de likes ${nb}" tabindex="0">${nb}
+                    </span>
+                    <span class="fa fa-heart rejected"></span>`
 
                 //maj du nombre total de likes pour le photographe
                 const bottomLikes = document.getElementById("likes-number")

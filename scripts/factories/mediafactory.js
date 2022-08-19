@@ -55,17 +55,17 @@ var mediaFactory = (data) => {
             article = document.createElement('article');
             article.setAttribute("id", `${id}`)
             article.classList.add("portfolio-article")
-            console.log(likeStatus);
-            article.innerHTML =`${picture} 
-                                <div class="photo-infos">
-                                    <h3 class="photo-title" aria-hidden="true">${title}</h3>
-                                    <a href="#like${id}" id=like${id} class="likes" aria-label="likes" tabindex="0">
-                                        <span aria-label="Nombre de likes ${likes}" tabindex="0">${likes}</span>
-                                        <span class="fa fa-heart ${likeStatus}"></span>
-                                    </a>
-                                </div>`
+            article.innerHTML =
+                `${picture} 
+                    <div class="photo-infos">
+                        <h2 class="photo-title" aria-hidden="true">${title}</h2>
+                        <a href="#like${id}" id=like${id} class="likes" aria-label="Valider pour liker" 
+                            tabindex="0">
+                            <span aria-label="Nombre de likes ${likes}" tabindex="0">${likes}</span>
+                            <span class="fa fa-heart ${likeStatus}"></span>
+                        </a>
+                    </div>`
 
-            console.log(article.innerHTML);
 
         //DOM pour le carrousel
         } else if (type == "carrousel") {

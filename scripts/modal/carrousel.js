@@ -100,7 +100,6 @@ var displayCarrousel = (idMedia) => {
  * @param {string} direction = "next" ou "prev"
  */
 var changeCarrousel = (direction) => {
-    console.log(direction);
     const carrouselItems =  document.querySelectorAll(".carrousel-item")
     
     //numéro de la prochaine image à afficher

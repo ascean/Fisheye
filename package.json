@@ -1,0 +1,21 @@
+{
+    "name": "p6",
+    "version": "1.0.0",
+    "description": "Front End Fisheye",
+    "main": "/scripts/pages/index.js",
+    "scripts": {
+        "sass": "sass --watch ./sass/main.scss:./css/style.css --no-source-map",
+        "sasstest": "sass --watch ./sass/test.scss:./css/test.css --no-source-map",
+        "lint": "eslint ./"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ascean/Front-End-Fisheye.git"
+    },
+    "devDependencies": {
+        "eslint": "^8.20.0"
+    },
+    "dependencies": {
+        "sass": "^1.54.3"
+    }
+}
