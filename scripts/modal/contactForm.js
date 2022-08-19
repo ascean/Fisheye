@@ -139,9 +139,9 @@ var listenerFunction = {
         //REGEX autorisant caractères alphanumérique et - et '
         let regexModel
         if (numField == 3) {
-            regexModel = /^[0-9a-zàâäãçéèêëìïîòôöõùûüñ'-]+$/i
-        }else{
             regexModel = /^[0-9a-zàâäãçéèêëìïîòôöõùûüñ'-.!]+$/i
+        }else{
+            regexModel = /^[0-9a-zàâäãçéèêëìïîòôöõùûüñ'-]+$/i
         } 
 
         //test si saisie + nb de caractères saisis >= 2 + REGEX
