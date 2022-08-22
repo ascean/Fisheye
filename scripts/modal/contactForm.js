@@ -58,7 +58,7 @@ var initErrors = () => {
                 textError[i].innerText= "Adresse mail valide obligatoire.";
                 break;
             case 3:
-                textError[i].innerText = "Message obligatoire";
+                textError[i].innerText = "Message obligatoire (caractères spéciaux interdits)";
                 break;
             default:
                 break;
@@ -139,7 +139,7 @@ var listenerFunction = {
         //REGEX autorisant caractères alphanumérique et - et '
         let regexModel
         if (numField == 3) {
-            regexModel = /^[0-9a-zàâäãçéèêëìïîòôöõùûüñ'-.!]+$/i
+            regexModel = /^[0-9a-zàâäãçéèêëìïîòôöõùûüñ'-.!\s]+$/i
         }else{
             regexModel = /^[0-9a-zàâäãçéèêëìïîòôöõùûüñ'-]+$/i
         } 
