@@ -158,12 +158,13 @@ var closeCarrousel = () => {
 
     //sections non lisibles par les TA
     const photographHeader = document.getElementById("photograph-header");
-    if (photographHeader) photographHeader.setAttribute('aria-hidden','true')
+    if (photographHeader) photographHeader.setAttribute('aria-hidden','false')
     const portfolioContainer = document.getElementById("portfolio-container");
-    if (portfolioContainer) portfolioContainer.setAttribute('aria-hidden','true')
+    if (portfolioContainer) portfolioContainer.setAttribute('aria-hidden','false')
 
-    //récup du focus par le bouton Contactez-moi
-    document.getElementById(calledMedia).children[0].focus()
+    //récup du focus par le média du portfolio qui a lancé le carrousel
+    const mediaFocus = document.getElementById(calledMedia).children[0]
+    mediaFocus.focus()
 }
 
 
@@ -172,19 +173,18 @@ document.addEventListener('keydown', e => {
     const carrouselContainer = document.getElementById('carrousel-container')
     //on interagit uniquement si le carrousel est affiché
     if (carrouselContainer && carrouselContainer.style.display == "flex") {
-
         switch (e.key) {
             //ESC -> fermeture du carrousel
             case "Escape":
                 closeCarrousel()
                 break;
-                //flèche droite : image suivante
+            //flèche droite : image suivante
             case "ArrowRight":
                 changeCarrousel("next")
                 break;
-                //flèche gauche : image précédente
-                case "ArrowLeft":
-                    changeCarrousel("prev")
+            //flèche gauche : image précédente
+            case "ArrowLeft":
+                changeCarrousel("prev")
                 break;
             default:
                 break;

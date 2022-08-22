@@ -208,7 +208,9 @@ var addLike = (idMedia) => {
 
                 //maj du nombre total de likes pour le photographe
                 const bottomLikes = document.getElementById("likes-number")
-                bottomLikes.innerText = parseInt(bottomLikes.innerText) + 1
+                let nbTotalLikes = parseInt(bottomLikes.innerText) + 1
+                bottomLikes.innerText = nbTotalLikes
+                bottomLikes.setAttribute("aria-label","Nombre total de likes : "+nbTotalLikes)
             }
             
         }
