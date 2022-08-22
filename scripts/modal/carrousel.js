@@ -173,9 +173,9 @@ document.addEventListener('keydown', e => {
     const carrouselContainer = document.getElementById('carrousel-container')
     //on interagit uniquement si le carrousel est affiché
     if (carrouselContainer && carrouselContainer.style.display == "flex") {
-        switch (e.key) {
+        switch (e.code) {
             //ESC -> fermeture du carrousel
-            case "Escape":
+            case "Space":
                 closeCarrousel()
                 break;
             //flèche droite : image suivante
