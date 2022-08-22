@@ -1,6 +1,7 @@
 /**********************************GESTION DU CARROUSEL******************************************** */
 let nbImages = 0 //nombre d'images contenues dans le portfolio
 let currentImg = 0  //numéro de l'image actuelle affichée dans le carrousel
+let calledMedia
 
 const carrouselContainer = document.getElementById("carrousel-container");
 
@@ -10,11 +11,12 @@ const carrouselContainer = document.getElementById("carrousel-container");
  */
 var displayMedia = (idMedia) => {
 
+    calledMedia = idMedia;
     const carrouselItems = document.querySelectorAll(".carrousel-item")
     const portfolio = document.getElementById("portfolio");
     const portfolioItems = portfolio.getElementsByTagName('article')
     for (let i = 0; i < portfolioItems.length; i++) {
-
+        
         //média sélectionné depuis le portofolio : affiché dans le carrousel + gestion TA
         if (portfolioItems[i].id == idMedia) {
             carrouselItems[i].classList.remove("display-none")
@@ -161,7 +163,7 @@ var closeCarrousel = () => {
     if (portfolioContainer) portfolioContainer.setAttribute('aria-hidden','true')
 
     //récup du focus par le bouton Contactez-moi
-    document.getElementById('contact-button').focus()
+    document.getElementById(calledMedia).children[0].focus()
 }
 
 

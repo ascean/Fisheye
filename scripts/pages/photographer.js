@@ -155,6 +155,8 @@ var init = async () => {
     //affichage des données médias du photographe concerné dans le portfolio
     displayPortfolio(photographersArray[idPhotographer][1])
 
+    document.querySelector(".logo").parentNode.focus()
+
 }
 
 
@@ -222,6 +224,7 @@ var setupListenersPortfolio = () => {
         mediaPortfolio.addEventListener("click", () => {
             // eslint-disable-next-line no-undef
             displayCarrousel(mediaPortfolio.parentNode.id)
+
         })   
     }
 

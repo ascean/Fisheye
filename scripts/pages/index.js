@@ -10,8 +10,9 @@
         let photographers = await response.json()
         return photographers    //ensemble du fichier JSON
 
+        
     }
-
+    
     /**
      * Traitement des données JSON et affichage dans le DOM
      * @param {object} photographers 
