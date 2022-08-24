@@ -174,7 +174,7 @@ document.addEventListener('keydown', e => {
     //on interagit uniquement si le carrousel est affiché
     if (carrouselContainer && carrouselContainer.style.display == "flex") {
         switch (e.code) {
-            //ESC -> fermeture du carrousel
+            //barre espace -> fermeture du carrousel
             case "Space":
                 closeCarrousel()
                 break;

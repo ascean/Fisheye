@@ -27,16 +27,6 @@ const idPhotographer = params.get('id');
 var totalLikes = 0
 var price = 0
 
-//récupération des données du fichier JSON
-var getDatas = async () => {
-
-    var request = './data/photographers.json'
-    let response = await fetch(request)
-    let datas = await response.json()
-    return datas
-
-}
-
 /**
  * traitement des données concernant le photographe passé en paramètre
  * @param {object} photographer 
@@ -121,6 +111,7 @@ var displayPortfolio = async (medias) => {
 var init = async () => {
 
     //récupération des données du fichier JSON
+    // eslint-disable-next-line no-undef
     const datas = await getDatas();
 
     //traitement de toutes les entrées photographers
@@ -226,7 +217,6 @@ var setupListenersPortfolio = () => {
         mediaPortfolio.addEventListener("click", () => {
             // eslint-disable-next-line no-undef
             displayCarrousel(mediaPortfolio.parentNode.id)
-
         })   
     }
 

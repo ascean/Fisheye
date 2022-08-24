@@ -1,6 +1,6 @@
 /****************************************GESTION DU DOM PHOTOGRAPHE******************************************************** */
 /**
- * Création du DOM concernant le ou les photographe(s) pour alimenter les pages index.htmp ou photographers.html
+ * Création du DOM concernant le ou les photographe(s) pour alimenter les pages index.html ou photographers.html
  * fonction appelée dans photographer.js et index.js
  * @param {object} data : ensemble des données phtographe contenues dans le tableau photographersArray[0]
  * @returns contenu du DOM à implémenter
