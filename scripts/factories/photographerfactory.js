@@ -31,7 +31,7 @@ var photographerFactory = (data) => {
 
             ARTICLE.innerHTML =
                 `<a href=photographer.html?id=${id} aria-label="${name}">
-                    <img src=${picture} class="img-photographer" alt="">
+                    <img src=${picture} class="img-photographer" alt="Photo de ${name}">
                     <h2>${name}</h2>
                 </a>
                 <div class="infos">
