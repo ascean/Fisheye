@@ -11,7 +11,7 @@ Création d'un site accessible pour une plateforme de photographes.
   - contenu généré dynamiquement en fonction du photographe,
   - affichage d'une galerie des travaux du photographe (photos et vidéos)
   - gestion du nombre de likes pour chaque média (incrémentation au clic, somme des likes de tous les médias affichée et incrémentée)
-  - tri des médias par popularité ou par titre,
+  - tri des médias par popularité, date ou titre,
   - ouverture des médias dans une lightbox : fermeture par bouton, boutons de navigation (réactifs au clic ou au clavier)
   - formulaire de contact (modale)
 - Site entièrement accessible (testé avec NVDA)
